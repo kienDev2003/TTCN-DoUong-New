@@ -37,24 +37,7 @@ namespace TTCN_TLQuan.BLL
 
         public List<ImportDetail> GetAll()
         {
-            List<ImportDetail> listImportDetail = new List<ImportDetail>();
-            using (SqlDataReader reader = _importDetailDAL.GetAll())
-            {
-                while (reader.Read())
-                {
-                    ImportDetail importDetail = new ImportDetail();
-
-                    importDetail.ImportDetailID = Convert.ToInt32(reader["ImportDetailID"]);
-                    importDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
-                    importDetail.IngredientName = Convert.ToString(reader["Name"]);
-                    importDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
-                    importDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
-                    importDetail.ImportID = Convert.ToInt32(reader["ImportID"]);
-
-                    listImportDetail.Add(importDetail);
-                }
-            }
-            return listImportDetail;
+            return _importDetailDAL.GetAll();
         }
     }
 }

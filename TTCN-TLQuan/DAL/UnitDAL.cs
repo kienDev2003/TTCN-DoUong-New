@@ -30,7 +30,7 @@ namespace TTCN_TLQuan.DAL
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
                 {"@UnitID", unit.UnitID },
-                {"@Name", unit.Name }
+                {"@Name", unit.UnitName }
             };
             return _dB.ExecuteNonQuery("Unit_Update", parameter);
         }
@@ -44,9 +44,22 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("Unit_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<Unit> GetAll()
         {
-            return _dB.ExecuteReader("Unit_Select", null);
+            List<Unit> listUnit = new List<Unit>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Unit_Select", null))
+            {
+                while (reader.Read())
+                {
+                    Unit unit = new Unit();
+
+                    unit.UnitID = Convert.ToInt32(reader["UnitID"]);
+                    unit.UnitName = Convert.ToString(reader["UnitName"]);
+
+                    listUnit.Add(unit);
+                }
+            }
+            return listUnit;
         }
     }
 }

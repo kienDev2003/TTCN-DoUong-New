@@ -37,24 +37,7 @@ namespace TTCN_TLQuan.BLL
 
         public List<OrderDetail> GetAll()
         {
-            List<OrderDetail> listOrderDetail = new List<OrderDetail>();
-            using (SqlDataReader reader = _orderDetailDAL.GetAll())
-            {
-                while (reader.Read())
-                {
-                    OrderDetail orderDetail = new OrderDetail();
-
-                    orderDetail.OrderDetailID = Convert.ToInt32(reader["OrderDetailID"]);
-                    orderDetail.ProductID = Convert.ToInt32(reader["ProductID"]);
-                    orderDetail.ProductName = Convert.ToString(reader["ProductName"]);
-                    orderDetail.OrderID = Convert.ToInt32(reader["OrderID"]);
-                    orderDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
-                    orderDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
-
-                    listOrderDetail.Add(orderDetail);
-                }
-            }
-            return listOrderDetail;
+            return _orderDetailDAL.GetAll();
         }
     }
 }

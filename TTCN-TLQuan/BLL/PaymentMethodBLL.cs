@@ -37,20 +37,7 @@ namespace TTCN_TLQuan.BLL
 
         public List<PaymentMethod> GetAll()
         {
-            List<PaymentMethod> listPaymentMethod = new List<PaymentMethod>();
-            using (SqlDataReader reader = _paymentMethodDAL.GetAll())
-            {
-                while (reader.Read())
-                {
-                    PaymentMethod paymentMethod = new PaymentMethod();
-
-                    paymentMethod.PaymentMethodID = Convert.ToInt32(reader["PaymentMethodID"]);
-                    paymentMethod.PaymentMethodName = Convert.ToString(reader["PaymentMethodName"]);
-
-                    listPaymentMethod.Add(paymentMethod);
-                }
-            }
-            return listPaymentMethod;
+            return _paymentMethodDAL.GetAll();
         }
     }
 }

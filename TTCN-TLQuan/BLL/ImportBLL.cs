@@ -38,23 +38,7 @@ namespace TTCN_TLQuan.BLL
 
         public List<Models.Import> GetAll()
         {
-            List<Models.Import> listImport = new List<Models.Import>();
-            using (SqlDataReader reader = _importDAL.GetAll())
-            {
-                while (reader.Read())
-                {
-                    Models.Import import = new Models.Import();
-
-                    import.ImportID = Convert.ToInt32(reader["ImportID"]);
-                    import.Date = Convert.ToDateTime(reader["Date"]);
-                    import.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
-                    import.UserID = Convert.ToInt32(reader["UserID"]);
-                    import.UserName = Convert.ToString(reader["FullName"]);
-
-                    listImport.Add(import);
-                }
-            }
-            return listImport;
+            return _importDAL.GetAll();
         }
     }
 }

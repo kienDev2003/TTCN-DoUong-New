@@ -38,7 +38,6 @@ namespace TTCN_TLQuan.DAL
                 {"@UserID", user.UserID },
                 {"@FullName", user.FullName },
                 {"@UserName", user.UserName },
-                {"@Password", user.Password},
                 {"@RoleID", user.RoleID },
                 {"@Email", user.Email},
                 {"@Phone", user.Phone }
@@ -55,9 +54,119 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("User_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<User> GetAll()
         {
-            return _dB.ExecuteReader("User_Select", null);
+            List<User> listUser = new List<User>();
+            using (SqlDataReader reader = _dB.ExecuteReader("User_Select", null))
+            {
+                while (reader.Read())
+                {
+                    User user = new User();
+
+                    user.UserID = Convert.ToInt32(reader["UserID"]);
+                    user.FullName = Convert.ToString(reader["FullName"]);
+                    user.UserName = Convert.ToString(reader["UserName"]);
+                    user.Password = Convert.ToString(reader["Password"]);
+                    user.Email = Convert.ToString(reader["Email"]);
+                    user.Phone = Convert.ToString(reader["Phone"]);
+                    user.RoleID = Convert.ToInt32(reader["RoleID"]);
+                    user.RoleName = Convert.ToString(reader["RoleName"]);
+
+                    listUser.Add(user);
+                }
+            }
+            return listUser;
+        }
+
+        public List<User> GetByFullName(string FullName)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@FullName", FullName }
+            };
+            List<User> listUser = new List<User>();
+            using (SqlDataReader reader = _dB.ExecuteReader("User_Select_By_FullName", parameter))
+            {
+                while (reader.Read())
+                {
+                    User user = new User();
+
+                    user.UserID = Convert.ToInt32(reader["UserID"]);
+                    user.FullName = Convert.ToString(reader["FullName"]);
+                    user.UserName = Convert.ToString(reader["UserName"]);
+                    user.Password = Convert.ToString(reader["Password"]);
+                    user.Email = Convert.ToString(reader["Email"]);
+                    user.Phone = Convert.ToString(reader["Phone"]);
+                    user.RoleID = Convert.ToInt32(reader["RoleID"]);
+                    user.RoleName = Convert.ToString(reader["RoleName"]);
+
+                    listUser.Add(user);
+                }
+            }
+            return listUser;
+        }
+
+        public User GetByID(int UserID)
+        {
+            User user = new User();
+
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@UserID",UserID }
+            };
+
+            using(SqlDataReader reader = _dB.ExecuteReader("User_Select_By_ID", parameter))
+            {
+                if (reader.Read())
+                {
+                    user.UserID = Convert.ToInt32(reader["UserID"]);
+                    user.FullName = Convert.ToString(reader["FullName"]);
+                    user.UserName = Convert.ToString(reader["UserName"]);
+                    user.Password = Convert.ToString(reader["Password"]);
+                    user.Email = Convert.ToString(reader["Email"]);
+                    user.Phone = Convert.ToString(reader["Phone"]);
+                    user.RoleID = Convert.ToInt32(reader["RoleID"]);
+                    user.RoleName = Convert.ToString(reader["RoleName"]);
+                }
+            }
+            return user;
+        }
+
+        public User Login(string UserName, string Password)
+        {
+            User user = new User();
+
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@UserName",UserName },
+                {"@Password", Password }
+            };
+
+            using (SqlDataReader reader = _dB.ExecuteReader("User_Login", parameter))
+            {
+                if (reader.Read())
+                {
+                    user.UserID = Convert.ToInt32(reader["UserID"]);
+                    user.FullName = Convert.ToString(reader["FullName"]);
+                    user.UserName = Convert.ToString(reader["UserName"]);
+                    user.Password = Convert.ToString(reader["Password"]);
+                    user.Email = Convert.ToString(reader["Email"]);
+                    user.Phone = Convert.ToString(reader["Phone"]);
+                    user.RoleID = Convert.ToInt32(reader["RoleID"]);
+                    user.RoleName = Convert.ToString(reader["RoleName"]);
+                }
+            }
+            return user;
+        }
+
+        public int ChangPassword(User user)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@UserID", user.UserID },
+                {"@Password", user.Password }
+            };
+            return _dB.ExecuteNonQuery("User_ChangPassword", parameter);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@Name", paymentMethod.Name }
+                {"@Name", paymentMethod.PaymentMethodName }
             };
             return _dB.ExecuteNonQuery("PaymentMethod_Insert", parameter);
         }
@@ -30,7 +30,7 @@ namespace TTCN_TLQuan.DAL
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
                 {"@PaymentMethodID", paymentMethod.PaymentMethodID },
-                {"@Name", paymentMethod.Name }
+                {"@Name", paymentMethod.PaymentMethodName }
             };
             return _dB.ExecuteNonQuery("PaymentMethod_Update", parameter);
         }
@@ -44,9 +44,22 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("PaymentMethod_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<PaymentMethod> GetAll()
         {
-            return _dB.ExecuteReader("PaymentMethod_Select", null);
+            List<PaymentMethod> listPaymentMethod = new List<PaymentMethod>();
+            using (SqlDataReader reader = _dB.ExecuteReader("PaymentMethod_Select", null))
+            {
+                while (reader.Read())
+                {
+                    PaymentMethod paymentMethod = new PaymentMethod();
+
+                    paymentMethod.PaymentMethodID = Convert.ToInt32(reader["PaymentMethodID"]);
+                    paymentMethod.PaymentMethodName = Convert.ToString(reader["PaymentMethodName"]);
+
+                    listPaymentMethod.Add(paymentMethod);
+                }
+            }
+            return listPaymentMethod;
         }
     }
 }

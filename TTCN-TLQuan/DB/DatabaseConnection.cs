@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -11,71 +12,58 @@ namespace TTCN_TLQuan
 {
     public class DatabaseConnection
     {
-        private string _connectionString;
+        private string strConn;
+        private SqlConnection conn;
 
         public DatabaseConnection()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["strConn_Local"].ConnectionString;
+            strConn = ConfigurationManager.ConnectionStrings["strConn_Local"].ConnectionString;
+            conn = new SqlConnection(strConn);
+            conn.Open();
         }
 
-        public DatabaseConnection(string connectionString)
+        public SqlConnection closeConn()
         {
-            _connectionString = connectionString;
-        }
-
-        public int ExecuteNonQuery(string ProcName, Dictionary<string, object> parameter)
-        {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            if (conn != null && conn.State == System.Data.ConnectionState.Open)
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(ProcName, conn))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                conn.Close();
+            }
+            return conn;
+        }
 
-                    foreach (var param in parameter)
+        public int ExecuteNonQuery(string procedureName, Dictionary<string, object> parameters)
+        {
+            if (conn.State == ConnectionState.Closed) conn.Open();
+            using (SqlCommand cmd = new SqlCommand(procedureName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                if (parameters != null)
+                {
+                    foreach (var param in parameters)
                     {
                         cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                     }
-
-                    return cmd.ExecuteNonQuery();
                 }
+
+                return cmd.ExecuteNonQuery();
             }
         }
-
-        public SqlDataReader ExecuteReader(string ProcName, Dictionary<string, object> parameter)
+        public SqlDataReader ExecuteReader(string procedureName, Dictionary<string, object> parameters)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            if (conn.State == ConnectionState.Closed) conn.Open();
+            using (SqlCommand cmd = new SqlCommand(procedureName, conn))
             {
-                using (SqlCommand cmd = new SqlCommand(ProcName, conn))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                    foreach (var param in parameter)
+                if (parameters != null)
+                {
+                    foreach (var param in parameters)
                     {
                         cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                     }
-
-                    return cmd.ExecuteReader();
                 }
-            }
-        }
-
-        public object ExecuteScalar(string ProcName, Dictionary<string, object> parameter)
-        {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(ProcName, conn))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    foreach (var param in parameter)
-                    {
-                        cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
-                    }
-
-                    return cmd.ExecuteScalar();
-                }
+                return cmd.ExecuteReader();
             }
         }
 

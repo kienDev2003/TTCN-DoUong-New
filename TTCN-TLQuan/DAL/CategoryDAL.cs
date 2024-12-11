@@ -20,7 +20,7 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@Name", category.Name }
+                {"@Name", category.CategoryName }
             };
             return _dB.ExecuteNonQuery("Category_Insert", parameter);
         }
@@ -29,15 +29,28 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@Name", category.Name },
+                {"@Name", category.CategoryName },
                 {"@CategoryID", category.CategoryID }
             };
             return _dB.ExecuteNonQuery("Category_Update", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<Category> GetAll()
         {
-            return _dB.ExecuteReader("Category_Select", null);
+            List<Category> listCategory = new List<Category>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Category_Select", null))
+            {
+                while (reader.Read())
+                {
+                    Category category = new Category();
+
+                    category.CategoryID = Convert.ToInt32(reader["CategoryID"]);
+                    category.CategoryName = Convert.ToString(reader["CategoryName"]);
+
+                    listCategory.Add(category);
+                }
+            }
+            return listCategory;
         }
 
         public int Delete(int CategoryID)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
 using TTCN_TLQuan.DAL;
 using TTCN_TLQuan.Models;
 
@@ -37,26 +38,17 @@ namespace TTCN_TLQuan.BLL
 
         public List<Product> GetAll()
         {
-            List<Product> listProduct = new List<Product>();
-            using (SqlDataReader reader = _productDAL.GetAll())
-            {
-                while (reader.Read())
-                {
-                    Product product = new Product();
+            return _productDAL.GetAll();
+        }
 
-                    product.ProductID = Convert.ToInt32(reader["ProductID"]);
-                    product.Name = Convert.ToString(reader["Name"]);
-                    product.Describe = Convert.ToString(reader["Describe"]);
-                    product.StatusSell = Convert.ToBoolean(reader["StatusSell"]);
-                    product.Price = Convert.ToSingle(reader["Price"]);
-                    product.CategoryID = Convert.ToInt32(reader["CategoryID"]);
-                    product.CategoryName = Convert.ToString(reader["CategoryName"]);
-                    product.ImageUrl = Convert.ToString(reader["ImageUrl"]);
+        public List<Product> GetByName(string Name)
+        {
+            return _productDAL.GetByName(Name);
+        }
 
-                    listProduct.Add(product);
-                }
-            }
-            return listProduct;
+        public Product GetByID(int ProductID)
+        {
+            return _productDAL.GetByID(ProductID);
         }
     }
 }

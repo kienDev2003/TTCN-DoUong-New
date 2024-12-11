@@ -50,9 +50,26 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("OrderDetail_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<OrderDetail> GetAll()
         {
-            return _dB.ExecuteReader("OrderDetail_Select", null);
+            List<OrderDetail> listOrderDetail = new List<OrderDetail>();
+            using (SqlDataReader reader = _dB.ExecuteReader("OrderDetail_Select", null))
+            {
+                while (reader.Read())
+                {
+                    OrderDetail orderDetail = new OrderDetail();
+
+                    orderDetail.OrderDetailID = Convert.ToInt32(reader["OrderDetailID"]);
+                    orderDetail.ProductID = Convert.ToInt32(reader["ProductID"]);
+                    orderDetail.ProductName = Convert.ToString(reader["ProductName"]);
+                    orderDetail.OrderID = Convert.ToInt32(reader["OrderID"]);
+                    orderDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
+                    orderDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+
+                    listOrderDetail.Add(orderDetail);
+                }
+            }
+            return listOrderDetail;
         }
     }
 }

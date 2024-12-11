@@ -49,9 +49,25 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("Import_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<Models.Import> GetAll()
         {
-            return _dB.ExecuteReader("Import_Select", null);
+            List<Models.Import> listImport = new List<Models.Import>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Import_Select", null))
+            {
+                while (reader.Read())
+                {
+                    Models.Import import = new Models.Import();
+
+                    import.ImportID = Convert.ToInt32(reader["ImportID"]);
+                    import.Date = Convert.ToDateTime(reader["Date"]);
+                    import.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+                    import.UserID = Convert.ToInt32(reader["UserID"]);
+                    import.UserName = Convert.ToString(reader["FullName"]);
+
+                    listImport.Add(import);
+                }
+            }
+            return listImport;
         }
     }
 }

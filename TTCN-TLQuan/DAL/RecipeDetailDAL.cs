@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using TTCN_TLQuan.BLL;
 using TTCN_TLQuan.Models;
 
 namespace TTCN_TLQuan.DAL
@@ -48,9 +49,25 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("RecipeDetail_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<RecipeDetail> GetAll()
         {
-            return _dB.ExecuteReader("RecipeDetail_Select", null);
+            List<RecipeDetail> listRecipeDetail = new List<RecipeDetail>();
+            using (SqlDataReader reader = _dB.ExecuteReader("RecipeDetail_Select", null))
+            {
+                while (reader.Read())
+                {
+                    RecipeDetail recipeDetail = new RecipeDetail();
+
+                    recipeDetail.RecipeDetailID = Convert.ToInt32(reader["RecipeDetailID"]);
+                    recipeDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
+                    recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
+                    recipeDetail.QuantityNeed = Convert.ToInt32(reader["QuantityNeed"]);
+                    recipeDetail.RecipeID = Convert.ToInt32(reader["RecipeID"]);
+
+                    listRecipeDetail.Add(recipeDetail);
+                }
+            }
+            return listRecipeDetail;
         }
     }
 }

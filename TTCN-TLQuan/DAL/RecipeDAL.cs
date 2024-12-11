@@ -44,9 +44,23 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("Recipe_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<Recipe> GetAll()
         {
-            return _dB.ExecuteReader("Recipe_Select", null);
+            List<Recipe> listRecipe = new List<Recipe>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Recipe_Select", null))
+            {
+                while (reader.Read())
+                {
+                    Recipe recipe = new Recipe();
+
+                    recipe.RecipeID = Convert.ToInt32(reader["RecipeID"]);
+                    recipe.ProductID = Convert.ToInt32(reader["ProductID"]);
+                    recipe.ProductName = Convert.ToString(reader["Name"]);
+
+                    listRecipe.Add(recipe);
+                }
+            }
+            return listRecipe;
         }
     }
 }

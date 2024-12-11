@@ -20,7 +20,7 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@Name", RoleName},
+                {"@RoleName", RoleName},
             };
             return _dB.ExecuteNonQuery("Role_Insert", parameter);
         }
@@ -29,8 +29,8 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@OrderID", role.RoleID },
-                {"@TableID", role.Name }
+                {"@RoleID", role.RoleID },
+                {"@RoleName", role.RoleName }
             };
             return _dB.ExecuteNonQuery("Role_Update", parameter);
         }
@@ -44,9 +44,22 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("Role_Delete", parameter);
         }
 
-        public SqlDataReader GetAll()
+        public List<Role> GetAll()
         {
-            return _dB.ExecuteReader("Role_Select", null);
+            List<Role> listRole = new List<Role>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Role_Select", null))
+            {
+                while (reader.Read())
+                {
+                    Role role = new Role();
+
+                    role.RoleID = Convert.ToInt32(reader["RoleID"]);
+                    role.RoleName = Convert.ToString(reader["RoleName"]);
+
+                    listRole.Add(role);
+                }
+            }
+            return listRole;
         }
     }
 }

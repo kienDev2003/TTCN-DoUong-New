@@ -37,20 +37,7 @@ namespace TTCN_TLQuan.BLL
 
         public List<Category> GetAll()
         {
-            List<Category> listCategory = new List<Category>();
-            using(SqlDataReader reader = _categoryDAL.GetAll())
-            {
-                while(reader.Read())
-                {
-                    Category category = new Category();
-
-                    category.CategoryID = Convert.ToInt32(reader["CategoryID"]);
-                    category.CategoryName = Convert.ToString(reader["CategoryName"]);
-
-                    listCategory.Add(category);
-                }
-            }
-            return listCategory;
+            return _categoryDAL.GetAll();
         }
     }
 }

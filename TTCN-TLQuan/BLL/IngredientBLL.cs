@@ -37,24 +37,17 @@ namespace TTCN_TLQuan.BLL
 
         public List<Ingredient> GetAll()
         {
-            List<Ingredient> listIngredient = new List<Ingredient>();
-            using (SqlDataReader reader = _ingredientDAL.GetAll())
-            {
-                while (reader.Read())
-                {
-                    Ingredient ingredient = new Ingredient();
+            return _ingredientDAL.GetAll();
+        }
 
-                    ingredient.IngredientID = Convert.ToInt32(reader["IngredientID"]);
-                    ingredient.Name = Convert.ToString(reader["Name"]);
-                    ingredient.Price = Convert.ToSingle(reader["Price"]);
-                    ingredient.Quantity = Convert.ToInt32(reader["Quantity"]);
-                    ingredient.UnitID = Convert.ToInt32(reader["UnitID"]);
-                    ingredient.UnitName = Convert.ToString(reader["UnitName"]);
+        public List<Ingredient> GetByName(string Name)
+        {
+            return _ingredientDAL.GetByName(Name);
+        }
 
-                    listIngredient.Add(ingredient);
-                }
-            }
-            return listIngredient;
+        public Ingredient GetByID(int IngredientID)
+        {
+            return _ingredientDAL.GetByID(IngredientID);
         }
     }
 }
