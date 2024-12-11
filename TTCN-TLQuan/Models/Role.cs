@@ -8,6 +8,6 @@ namespace TTCN_TLQuan.Models
     public class Role
     {
         public int RoleID { get; set; }
-        public string Name { get; set; }
+        public string RoleName { get; set; }
     }
 }

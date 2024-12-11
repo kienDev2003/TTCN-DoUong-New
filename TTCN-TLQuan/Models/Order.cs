@@ -12,7 +12,8 @@ namespace TTCN_TLQuan.Models
         public DateTime Date { get; set; }
         public float TotalMoney { get; set; }
         public bool StatusServe { get; set; }
-        public bool StatusPay {  get; set; }
+        public bool StatusPay { get; set; }
         public int PaymentMethodID { get; set; }
+        public string PaymentMethodName { get; set; }
     }
 }

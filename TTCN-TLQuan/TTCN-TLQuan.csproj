@@ -70,12 +70,27 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\CategoryBLL.cs" />
+    <Compile Include="BLL\ImportBLL.cs" />
+    <Compile Include="BLL\ImportDetailBLL.cs" />
+    <Compile Include="BLL\IngredientBLL.cs" />
+    <Compile Include="BLL\OrderBLL.cs" />
+    <Compile Include="BLL\OrderDetailBLL.cs" />
+    <Compile Include="BLL\PaymentMethodBLL.cs" />
+    <Compile Include="BLL\ProductBLL.cs" />
     <Compile Include="DAL\CategoryDAL.cs" />
     <Compile Include="DAL\ImportDAL.cs" />
     <Compile Include="DAL\ImportDetailDAL.cs" />
     <Compile Include="DAL\IngredientDAL.cs" />
     <Compile Include="DAL\OrderDAL.cs" />
     <Compile Include="DAL\OrderDetailDAL.cs" />
+    <Compile Include="DAL\PaymentMethodDAL.cs" />
+    <Compile Include="DAL\ProductDAL.cs" />
+    <Compile Include="DAL\RecipeDAL.cs" />
+    <Compile Include="DAL\RecipeDetailDAL.cs" />
+    <Compile Include="DAL\RoleDAL.cs" />
+    <Compile Include="DAL\UnitDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DB\DatabaseConnection.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Import.cs" />
@@ -102,7 +117,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
     <Folder Include="UI\" />
   </ItemGroup>
   <PropertyGroup>
