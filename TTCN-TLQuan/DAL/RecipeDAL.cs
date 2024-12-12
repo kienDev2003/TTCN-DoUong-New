@@ -62,5 +62,26 @@ namespace TTCN_TLQuan.DAL
             }
             return listRecipe;
         }
+
+        public Recipe GetByProductID(int ProductID)
+        {
+            Recipe recipe = new Recipe();
+
+            Dictionary<string, object> prameter = new Dictionary<string, object>()
+            {
+                {"@ProductID",ProductID }
+            };
+
+            using (SqlDataReader dataReader = _dB.ExecuteReader("Recipe_Select_By_ProductID", prameter))
+            {
+                if (dataReader.Read())
+                {
+                    recipe.RecipeID = int.Parse(dataReader["Recipe_ID"].ToString());
+                    recipe.ProductID = int.Parse(dataReader["Product_ID"].ToString());
+                    recipe.ProductName = dataReader["ProductName"].ToString();
+                }
+            }
+            return recipe;
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("OrderDetail_Insert", parameter);
         }
 
-        public int Update(OrderDetail orderDetail)
+        public int Update(Models.OrderDetail orderDetail)
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
@@ -50,14 +50,41 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("OrderDetail_Delete", parameter);
         }
 
-        public List<OrderDetail> GetAll()
+        public List<Models.OrderDetail> GetAll()
         {
-            List<OrderDetail> listOrderDetail = new List<OrderDetail>();
+            List<Models.OrderDetail> listOrderDetail = new List<Models.OrderDetail>();
             using (SqlDataReader reader = _dB.ExecuteReader("OrderDetail_Select", null))
             {
                 while (reader.Read())
                 {
-                    OrderDetail orderDetail = new OrderDetail();
+                    Models.OrderDetail orderDetail = new Models.OrderDetail();
+
+                    orderDetail.OrderDetailID = Convert.ToInt32(reader["OrderDetailID"]);
+                    orderDetail.ProductID = Convert.ToInt32(reader["ProductID"]);
+                    orderDetail.ProductName = Convert.ToString(reader["ProductName"]);
+                    orderDetail.OrderID = Convert.ToInt32(reader["OrderID"]);
+                    orderDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
+                    orderDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+
+                    listOrderDetail.Add(orderDetail);
+                }
+            }
+            return listOrderDetail;
+        }
+
+        public List<Models.OrderDetail> GetAllByOrderID(string OrderID)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@OrderID",OrderID }
+            };
+
+            List<Models.OrderDetail> listOrderDetail = new List<Models.OrderDetail>();
+            using (SqlDataReader reader = _dB.ExecuteReader("OrderDetail_Select_By_OrderID", parameter))
+            {
+                while (reader.Read())
+                {
+                    Models.OrderDetail orderDetail = new Models.OrderDetail();
 
                     orderDetail.OrderDetailID = Convert.ToInt32(reader["OrderDetailID"]);
                     orderDetail.ProductID = Convert.ToInt32(reader["ProductID"]);

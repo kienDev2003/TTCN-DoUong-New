@@ -39,5 +39,15 @@ namespace TTCN_TLQuan.BLL
         {
             return _orderDAL.GetAll();
         }
+
+        public Order GetByID(string OrderID)
+        {
+            return _orderDAL.GetByID(OrderID);
+        }
+
+        public List<Order> GetAllNotServe()
+        {
+            return _orderDAL.GetAllNotServe();
+        }
     }
 }

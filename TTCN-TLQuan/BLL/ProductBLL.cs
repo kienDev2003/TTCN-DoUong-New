@@ -50,5 +50,34 @@ namespace TTCN_TLQuan.BLL
         {
             return _productDAL.GetByID(ProductID);
         }
+
+        public List<Product> GetAllByCategoryID(int CategoryID)
+        {
+            return _productDAL.GetAllByCategoryID(CategoryID);
+        }
+
+        public bool RawMaterial(int ProductID, int Quantity)
+        {
+            IngredientBLL ingredientBLL = new IngredientBLL();
+            RecipeBLL recipeBLL = new RecipeBLL();
+
+            Recipe recipe = recipeBLL.getByProductId(ProductID);
+
+            if (recipe.RecipeID <= 0) return false;
+
+            List<RecipeDetail> listRecipeDetail = new List<RecipeDetail>();
+            RecipeDetailBLL recipeDetailBLL = new RecipeDetailBLL();
+
+            listRecipeDetail = recipeDetailBLL.GetAllByRecipeID(recipe.RecipeID);
+
+            foreach(RecipeDetail recipeDetail in listRecipeDetail)
+            {
+                Ingredient ingredient = ingredientBLL.GetByID(recipeDetail.IngredientID);
+
+                if (ingredient.Quantity - recipeDetail.QuantityNeed * Quantity < 0) return false;
+            }
+            
+            return true;
+        }
     }
 }

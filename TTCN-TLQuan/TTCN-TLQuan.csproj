@@ -2155,6 +2155,13 @@
     <Content Include="UI\administrator\home\master\font\fontawesome-free-6.5.2-web\svgs\solid\z.svg" />
     <Content Include="UI\administrator\home\master\master.css" />
     <Content Include="UI\administrator\home\master\master.js" />
+    <Content Include="UI\administrator\home\pay\bank-transfer\assets\css\main.css" />
+    <Content Include="UI\administrator\home\pay\bank-transfer\assets\css\res.css" />
+    <Content Include="UI\administrator\home\pay\bank-transfer\assets\img\image.jpg" />
+    <Content Include="UI\administrator\home\pay\bank-transfer\index.aspx" />
+    <Content Include="UI\administrator\home\pay\bctk.css" />
+    <Content Include="UI\administrator\home\pay\index.aspx" />
+    <Content Include="UI\administrator\home\pay\thanhToan.js" />
     <Content Include="UI\administrator\home\product\edit.aspx" />
     <Content Include="UI\administrator\home\product\editProduct.css" />
     <Content Include="UI\administrator\home\product\index.aspx" />
@@ -2171,6 +2178,22 @@
     <Content Include="UI\administrator\login\asset\js\login.js" />
     <Content Include="UI\administrator\login\asset\responsive\login.css" />
     <Content Include="UI\administrator\login\index.aspx" />
+    <Content Include="UI\bar\assets\css\global.css" />
+    <Content Include="UI\bar\assets\css\main.css" />
+    <Content Include="UI\bar\assets\css\orderDetails.css" />
+    <Content Include="UI\bar\assets\css\reset.css" />
+    <Content Include="UI\bar\assets\img\images %281%29.png" />
+    <Content Include="UI\bar\index.aspx" />
+    <Content Include="UI\bar\OrderDetail.aspx" />
+    <Content Include="UI\client\menu\assets\css\main.css" />
+    <Content Include="UI\client\menu\assets\css\reset.css" />
+    <Content Include="UI\client\menu\assets\css\responsive.css" />
+    <Content Include="UI\client\menu\assets\img\icon-add-item.svg" />
+    <Content Include="UI\client\menu\assets\img\icon-cart.svg" />
+    <Content Include="UI\client\menu\assets\img\list.png" />
+    <Content Include="UI\client\menu\assets\img\navbar.png" />
+    <Content Include="UI\client\menu\assets\js\script_menu.js" />
+    <Content Include="UI\client\menu\index.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -2237,6 +2260,20 @@
     <Compile Include="UI\administrator\home\master\Layout.Master.designer.cs">
       <DependentUpon>Layout.Master</DependentUpon>
     </Compile>
+    <Compile Include="UI\administrator\home\pay\bank-transfer\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\pay\bank-transfer\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\pay\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\pay\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\administrator\home\product\edit.aspx.cs">
       <DependentUpon>edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2270,6 +2307,27 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UI\administrator\login\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\bar\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\bar\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\bar\OrderDetail.aspx.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\bar\OrderDetail.aspx.designer.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\client\menu\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\client\menu\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -2341,9 +2399,7 @@
     <Folder Include="UI\administrator\home\recipe\" />
     <Folder Include="UI\administrator\login\asset\font\" />
     <Folder Include="UI\administrator\login\asset\resset\" />
-    <Folder Include="UI\bar\" />
     <Folder Include="UI\client\cart\" />
-    <Folder Include="UI\client\menu\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

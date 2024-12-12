@@ -21,10 +21,10 @@ namespace TTCN_TLQuan.DAL
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
                 {"@TableID", order.TableID },
-                {"@Date", order.Date.ToString("yyyy-MM-dd HH:mm:ss:fff") },
+                {"@Date", order.Date },
                 {"@TotalMoney", order.TotalMoney },
-                {"@StatusServe", false },
-                {"@StatusPay", false},
+                {"@StatusServe", order.StatusServe },
+                {"@StatusPay", order.StatusPay},
                 {"@PaymentMethodID", order.PaymentMethodID }
             };
             return _dB.ExecuteNonQuery("Order_Insert", parameter);
@@ -36,10 +36,10 @@ namespace TTCN_TLQuan.DAL
             {
                 {"@OrderID", order.OrderID },
                 {"@TableID", order.TableID },
-                {"@Date", order.Date.ToString("yyyy-MM-dd HH:mm:ss:fff") },
+                {"@Date", order.Date },
                 {"@TotalMoney", order.TotalMoney },
-                {"@StatusServe", false },
-                {"@StatusPay", false},
+                {"@StatusServe", order.StatusServe },
+                {"@StatusPay", order.StatusPay},
                 {"@PaymentMethodID", order.PaymentMethodID }
             };
             return _dB.ExecuteNonQuery("Order_Update", parameter);
@@ -65,7 +65,55 @@ namespace TTCN_TLQuan.DAL
 
                     order.OrderID = Convert.ToInt32(reader["OrderID"]);
                     order.TableID = Convert.ToInt32(reader["TableID"]);
-                    order.Date = Convert.ToDateTime(reader["Date"]);
+                    order.Date = Convert.ToString(reader["Date"]);
+                    order.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+                    order.StatusServe = Convert.ToBoolean(reader["StatusServe"]);
+                    order.StatusPay = Convert.ToBoolean(reader["StatusPay"]);
+                    order.PaymentMethodID = Convert.ToInt32(reader["PaymentMethodID"]);
+                    order.PaymentMethodName = Convert.ToString(reader["PaymentMethodName"]);
+
+                    listOrder.Add(order);
+                }
+            }
+            return listOrder;
+        }
+
+        public Order GetByID(string OrderID)
+        {
+            Order order = new Order();
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@OrderID",OrderID }
+            };
+            using (SqlDataReader reader = _dB.ExecuteReader("Order_Select_By_ID", parameter))
+            {
+                if (reader.Read())
+                {
+                    order.OrderID = Convert.ToInt32(reader["OrderID"]);
+                    order.TableID = Convert.ToInt32(reader["TableID"]);
+                    order.Date = Convert.ToString(reader["Date"]);
+                    order.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+                    order.StatusServe = Convert.ToBoolean(reader["StatusServe"]);
+                    order.StatusPay = Convert.ToBoolean(reader["StatusPay"]);
+                    order.PaymentMethodID = Convert.ToInt32(reader["PaymentMethodID"]);
+                    order.PaymentMethodName = Convert.ToString(reader["PaymentMethodName"]);
+                }
+            }
+            return order;
+        }
+
+        public List<Order> GetAllNotServe()
+        {
+            List<Order> listOrder = new List<Order>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Order_Select_Not_Serve", null))
+            {
+                while (reader.Read())
+                {
+                    Order order = new Order();
+
+                    order.OrderID = Convert.ToInt32(reader["OrderID"]);
+                    order.TableID = Convert.ToInt32(reader["TableID"]);
+                    order.Date = Convert.ToString(reader["Date"]);
                     order.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
                     order.StatusServe = Convert.ToBoolean(reader["StatusServe"]);
                     order.StatusPay = Convert.ToBoolean(reader["StatusPay"]);

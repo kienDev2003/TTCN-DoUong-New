@@ -130,5 +130,33 @@ namespace TTCN_TLQuan.DAL
             }
             return product;
         }
+
+        public List<Product> GetAllByCategoryID(int CategoryID)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@CategoryID", CategoryID }
+            };
+            List<Product> listProduct = new List<Product>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Product_Select_By_Category", parameter))
+            {
+                while (reader.Read())
+                {
+                    Product product = new Product();
+
+                    product.ProductID = Convert.ToInt32(reader["ProductID"]);
+                    product.Name = Convert.ToString(reader["Name"]);
+                    product.Describe = Convert.ToString(reader["Describe"]);
+                    product.StatusSell = Convert.ToBoolean(reader["StatusSell"]);
+                    product.Price = Convert.ToSingle(reader["Price"]);
+                    product.CategoryID = Convert.ToInt32(reader["CategoryID"]);
+                    product.CategoryName = Convert.ToString(reader["CategoryName"]);
+                    product.ImageUrl = Convert.ToString(reader["ImageUrl"]);
+
+                    listProduct.Add(product);
+                }
+            }
+            return listProduct;
+        }
     }
 }

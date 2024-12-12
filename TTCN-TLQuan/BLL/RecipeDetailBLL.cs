@@ -39,5 +39,10 @@ namespace TTCN_TLQuan.BLL
         {
             return _recipeDetailBLL.GetAll();
         }
+
+        public List<RecipeDetail> GetAllByRecipeID(int RecipeID)
+        {
+            return _recipeDetailBLL.GetAllByRecipeID(RecipeID);
+        }
     }
 }

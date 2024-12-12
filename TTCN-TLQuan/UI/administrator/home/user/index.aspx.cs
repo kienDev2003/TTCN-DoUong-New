@@ -14,7 +14,12 @@ namespace TTCN_TLQuan.UI.administrator.home.user
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["login"] != null)
+            {
+                User user = new User();
+                user = Session["login"] as User;
+                if (user.RoleID != 2) Response.Redirect("../../login");
+            }
         }
 
         [WebMethod]

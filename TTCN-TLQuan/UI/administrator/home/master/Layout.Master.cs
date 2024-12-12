@@ -21,6 +21,12 @@ namespace TTCN_TLQuan.UI.administrator.home.master
                 User user = new User();
                 user = Session["login"] as User;
                 nameUser.InnerText = user.FullName;
+
+                if(user.RoleID == 1)
+                {
+                    liUser.Visible = false;
+                    liReport.Visible = false;
+                }
             }
         }
     }

@@ -7,9 +7,14 @@ namespace TTCN_TLQuan.Models
 {
     public class Order
     {
+        public Order()
+        {
+            StatusServe = false;
+            StatusPay = false;
+        }
         public int OrderID { get; set; }
         public int TableID { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public float TotalMoney { get; set; }
         public bool StatusServe { get; set; }
         public bool StatusPay { get; set; }

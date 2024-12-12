@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -38,6 +39,11 @@ namespace TTCN_TLQuan.BLL
         public List<Recipe> GetAll()
         {
             return _recipeDAL.GetAll();
+        }
+
+        public Recipe getByProductId(int ProductID)
+        {
+            return _recipeDAL.GetByProductID(ProductID);
         }
     }
 }

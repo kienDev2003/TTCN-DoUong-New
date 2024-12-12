@@ -43,7 +43,7 @@ namespace TTCN_TLQuan.UI.administrator.login
                 else
                 {
                     Session["login"] = user;
-                    Response.Redirect("../home/user/");
+                    Response.Redirect("../home/product/");
                 }
             }
 

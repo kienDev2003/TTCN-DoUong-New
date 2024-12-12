@@ -69,5 +69,30 @@ namespace TTCN_TLQuan.DAL
             }
             return listRecipeDetail;
         }
+
+        public List<RecipeDetail> GetAllByRecipeID(int RecipeID)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@RecipeID",RecipeID }
+            };
+            List<RecipeDetail> listRecipeDetail = new List<RecipeDetail>();
+            using (SqlDataReader reader = _dB.ExecuteReader("RecipeDetail_Select_By_RecipeID", null))
+            {
+                while (reader.Read())
+                {
+                    RecipeDetail recipeDetail = new RecipeDetail();
+
+                    recipeDetail.RecipeDetailID = Convert.ToInt32(reader["RecipeDetailID"]);
+                    recipeDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
+                    recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
+                    recipeDetail.QuantityNeed = Convert.ToInt32(reader["QuantityNeed"]);
+                    recipeDetail.RecipeID = Convert.ToInt32(reader["RecipeID"]);
+
+                    listRecipeDetail.Add(recipeDetail);
+                }
+            }
+            return listRecipeDetail;
+        }
     }
 }
