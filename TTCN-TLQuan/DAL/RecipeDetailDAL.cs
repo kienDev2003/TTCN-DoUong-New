@@ -77,7 +77,7 @@ namespace TTCN_TLQuan.DAL
                 {"@RecipeID",RecipeID }
             };
             List<RecipeDetail> listRecipeDetail = new List<RecipeDetail>();
-            using (SqlDataReader reader = _dB.ExecuteReader("RecipeDetail_Select_By_RecipeID", null))
+            using (SqlDataReader reader = _dB.ExecuteReader("RecipeDetail_Select_By_RecipeID",parameter))
             {
                 while (reader.Read())
                 {
@@ -85,7 +85,7 @@ namespace TTCN_TLQuan.DAL
 
                     recipeDetail.RecipeDetailID = Convert.ToInt32(reader["RecipeDetailID"]);
                     recipeDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
-                    recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
+                    //recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
                     recipeDetail.QuantityNeed = Convert.ToInt32(reader["QuantityNeed"]);
                     recipeDetail.RecipeID = Convert.ToInt32(reader["RecipeID"]);
 

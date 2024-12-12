@@ -2185,6 +2185,9 @@
     <Content Include="UI\bar\assets\img\images %281%29.png" />
     <Content Include="UI\bar\index.aspx" />
     <Content Include="UI\bar\OrderDetail.aspx" />
+    <Content Include="UI\client\cart\assets\css\styles.css" />
+    <Content Include="UI\client\cart\assets\js\scripts.js" />
+    <Content Include="UI\client\cart\index.aspx" />
     <Content Include="UI\client\menu\assets\css\main.css" />
     <Content Include="UI\client\menu\assets\css\reset.css" />
     <Content Include="UI\client\menu\assets\css\responsive.css" />
@@ -2323,6 +2326,13 @@
     <Compile Include="UI\bar\OrderDetail.aspx.designer.cs">
       <DependentUpon>OrderDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UI\client\cart\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\client\cart\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\client\menu\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2399,7 +2409,6 @@
     <Folder Include="UI\administrator\home\recipe\" />
     <Folder Include="UI\administrator\login\asset\font\" />
     <Folder Include="UI\administrator\login\asset\resset\" />
-    <Folder Include="UI\client\cart\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -23,7 +23,8 @@ namespace TTCN_TLQuan.DAL
                 {"@ProductID", orderDetail.ProductID },
                 {"@OrderID", orderDetail.OrderID },
                 {"@Quantity", orderDetail.Quantity },
-                {"@TotalMoney", orderDetail.TotalMoney }
+                {"@TotalMoney", orderDetail.TotalMoney },
+                {"@StatusServe", orderDetail.StatusServe }
             };
             return _dB.ExecuteNonQuery("OrderDetail_Insert", parameter);
         }
@@ -36,7 +37,8 @@ namespace TTCN_TLQuan.DAL
                 {"@ProductID", orderDetail.ProductID },
                 {"@OrderID", orderDetail.OrderID },
                 {"@Quantity", orderDetail.Quantity },
-                {"@TotalMoney", orderDetail.TotalMoney }
+                {"@TotalMoney", orderDetail.TotalMoney },
+                {"@StatusServe", orderDetail.StatusServe }
             };
             return _dB.ExecuteNonQuery("OrderDetail_Update", parameter);
         }
@@ -62,7 +64,7 @@ namespace TTCN_TLQuan.DAL
                     orderDetail.OrderDetailID = Convert.ToInt32(reader["OrderDetailID"]);
                     orderDetail.ProductID = Convert.ToInt32(reader["ProductID"]);
                     orderDetail.ProductName = Convert.ToString(reader["ProductName"]);
-                    orderDetail.OrderID = Convert.ToInt32(reader["OrderID"]);
+                    orderDetail.OrderID = Convert.ToString(reader["OrderID"]);
                     orderDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
                     orderDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
 
@@ -72,7 +74,7 @@ namespace TTCN_TLQuan.DAL
             return listOrderDetail;
         }
 
-        public List<Models.OrderDetail> GetAllByOrderID(string OrderID)
+        public List<Models.OrderDetail> GetAllByOrderIDNotServe(string OrderID)
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
@@ -80,7 +82,7 @@ namespace TTCN_TLQuan.DAL
             };
 
             List<Models.OrderDetail> listOrderDetail = new List<Models.OrderDetail>();
-            using (SqlDataReader reader = _dB.ExecuteReader("OrderDetail_Select_By_OrderID", parameter))
+            using (SqlDataReader reader = _dB.ExecuteReader("OrderDetail_Select_By_OrderID_Not_Serve", parameter))
             {
                 while (reader.Read())
                 {
@@ -88,8 +90,8 @@ namespace TTCN_TLQuan.DAL
 
                     orderDetail.OrderDetailID = Convert.ToInt32(reader["OrderDetailID"]);
                     orderDetail.ProductID = Convert.ToInt32(reader["ProductID"]);
-                    orderDetail.ProductName = Convert.ToString(reader["ProductName"]);
-                    orderDetail.OrderID = Convert.ToInt32(reader["OrderID"]);
+                    orderDetail.ProductName = Convert.ToString(reader["Name"]);
+                    orderDetail.OrderID = Convert.ToString(reader["OrderID"]);
                     orderDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
                     orderDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
 

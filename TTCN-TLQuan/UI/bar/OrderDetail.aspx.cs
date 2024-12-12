@@ -36,7 +36,7 @@ namespace TTCN_TLQuan.UI.bar
             OrderDetailBLL orderDetailBLL = new OrderDetailBLL();
             List<Models.OrderDetail> orderDetails = new List<Models.OrderDetail>();
             
-            orderDetails = orderDetailBLL.GetAllByOrderID(OrderID);
+            orderDetails = orderDetailBLL.GetAllByOrderIDNotServe(OrderID);
 
             foreach (Models.OrderDetail orderDetail in orderDetails)
             {
@@ -54,12 +54,21 @@ namespace TTCN_TLQuan.UI.bar
         protected void btnSuccess_ServerClick(object sender, EventArgs e)
         {
             OrderBLL orderBLL = new OrderBLL();
+            OrderDetailBLL orderDetailBLL = new OrderDetailBLL();
+
             Order order = new Order();
+            List<Models.OrderDetail> orderDetails = new List<Models.OrderDetail>();
 
             order = orderBLL.GetByID(Request.QueryString["orderID"].ToString());
             order.StatusServe = true;
 
-            if(orderBLL.Update(order)) Response.Redirect("./");
+            orderDetails = orderDetailBLL.GetAllByOrderIDNotServe(order.OrderID);
+            foreach(Models.OrderDetail orderDetail in orderDetails)
+            {
+                orderDetail.StatusServe = true;
+            }
+
+            if(orderBLL.Update(order) && orderDetailBLL.UpdateList(orderDetails)) Response.Redirect("./");
         }
     }
 }

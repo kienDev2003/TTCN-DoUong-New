@@ -23,10 +23,31 @@ namespace TTCN_TLQuan.BLL
             return false;
         }
 
+        public bool AddList(List<OrderDetail> orderDetails)
+        {
+            foreach(OrderDetail orderDetail in orderDetails)
+            {
+                if (Add(orderDetail)) continue;
+                return false;
+            }
+
+            return true;
+        }
+
         public bool Update(OrderDetail orderDetail)
         {
             if (_orderDetailDAL.Update(orderDetail) > 0) return true;
             return false;
+        }
+
+        public bool UpdateList(List<OrderDetail> orderDetails)
+        {
+            foreach (OrderDetail orderDetail in orderDetails)
+            {
+                if (Update(orderDetail)) continue;
+                return false;
+            }
+            return true;
         }
 
         public bool Delete(int OrderDetailID)
@@ -40,9 +61,9 @@ namespace TTCN_TLQuan.BLL
             return _orderDetailDAL.GetAll();
         }
 
-        public List<OrderDetail> GetAllByOrderID(string OrderID)
+        public List<OrderDetail> GetAllByOrderIDNotServe(string OrderID)
         {
-            return _orderDetailDAL.GetAllByOrderID(OrderID);
+            return _orderDetailDAL.GetAllByOrderIDNotServe(OrderID);
         }
     }
 }

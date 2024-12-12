@@ -49,5 +49,14 @@ namespace TTCN_TLQuan.BLL
         {
             return _orderDAL.GetAllNotServe();
         }
+
+        public List<Order> GetAllNotPay()
+        {
+            return _orderDAL.GetAllNotPay();
+        }
+        public Order GetByTableIDAndNotPay(int TableID)
+        {
+            return _orderDAL.GetByTableIDAndNotPay(TableID);
+        }
     }
 }

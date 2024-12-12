@@ -76,9 +76,9 @@ namespace TTCN_TLQuan.DAL
             {
                 if (dataReader.Read())
                 {
-                    recipe.RecipeID = int.Parse(dataReader["Recipe_ID"].ToString());
-                    recipe.ProductID = int.Parse(dataReader["Product_ID"].ToString());
-                    recipe.ProductName = dataReader["ProductName"].ToString();
+                    recipe.RecipeID = int.Parse(dataReader["RecipeID"].ToString());
+                    recipe.ProductID = int.Parse(dataReader["ProductID"].ToString());
+                    recipe.ProductName = dataReader["Name"].ToString();
                 }
             }
             return recipe;

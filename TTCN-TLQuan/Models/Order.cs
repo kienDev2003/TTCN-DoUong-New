@@ -12,7 +12,7 @@ namespace TTCN_TLQuan.Models
             StatusServe = false;
             StatusPay = false;
         }
-        public int OrderID { get; set; }
+        public string OrderID { get; set; }
         public int TableID { get; set; }
         public string Date { get; set; }
         public float TotalMoney { get; set; }
