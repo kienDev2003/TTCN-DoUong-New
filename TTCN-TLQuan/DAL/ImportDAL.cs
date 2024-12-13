@@ -21,7 +21,7 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@Date", import.Date.ToString("yyyy-MM-dd HH:mm:ss:fff") },
+                {"@Date", import.Date },
                 {"@UserID", import.UserID },
                 {"@TotalMoney", import.TotalMoney }
             };
@@ -33,7 +33,7 @@ namespace TTCN_TLQuan.DAL
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
                 {"@ImportID", import.ImportID},
-                {"@Date", import.Date.ToString("yyyy-MM-dd HH:mm:ss:fff") },
+                {"@Date", import.Date },
                 {"@UserID", import.UserID },
                 {"@TotalMoney", import.TotalMoney }
             };
@@ -58,8 +58,8 @@ namespace TTCN_TLQuan.DAL
                 {
                     Models.Import import = new Models.Import();
 
-                    import.ImportID = Convert.ToInt32(reader["ImportID"]);
-                    import.Date = Convert.ToDateTime(reader["Date"]);
+                    import.ImportID = Convert.ToString(reader["ImportID"]);
+                    import.Date = Convert.ToString(reader["Date"]);
                     import.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
                     import.UserID = Convert.ToInt32(reader["UserID"]);
                     import.UserName = Convert.ToString(reader["FullName"]);
@@ -68,6 +68,27 @@ namespace TTCN_TLQuan.DAL
                 }
             }
             return listImport;
+        }
+
+        public Models.Import GetByID(string ImportID)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@ImportID",ImportID }
+            };
+            Models.Import import = new Models.Import();
+            using(SqlDataReader reader = _dB.ExecuteReader("Import_Select_By_ID", parameter))
+            {
+                if(reader.Read())
+                {
+                    import.ImportID = Convert.ToString(reader["ImportID"]);
+                    import.Date = Convert.ToString(reader["Date"]);
+                    import.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+                    import.UserID = Convert.ToInt32(reader["UserID"]);
+                    import.UserName = Convert.ToString(reader["FullName"]);
+                }
+            }
+            return import;
         }
     }
 }

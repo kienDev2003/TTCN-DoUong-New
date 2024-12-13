@@ -22,7 +22,7 @@
                     </div>
                     <div class="logo">
                         <a href=".">
-                            <h1>GrabFood</h1>
+                            <h1>Tiên Lữ Quán</h1>
                         </a>
                     </div>
                     <div class="form-cart">

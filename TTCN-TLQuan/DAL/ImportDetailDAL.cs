@@ -64,7 +64,35 @@ namespace TTCN_TLQuan.DAL
                     importDetail.IngredientName = Convert.ToString(reader["Name"]);
                     importDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
                     importDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
-                    importDetail.ImportID = Convert.ToInt32(reader["ImportID"]);
+                    importDetail.ImportID = Convert.ToString(reader["ImportID"]);
+
+                    listImportDetail.Add(importDetail);
+                }
+            }
+            return listImportDetail;
+        }
+
+        public List<ImportDetail> GetAllByImportID(string ImportID)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@ImportID",ImportID }
+            };
+
+            List<ImportDetail> listImportDetail = new List<ImportDetail>();
+            using (SqlDataReader reader = _dB.ExecuteReader("ImportDetail_Select_By_ImportID", parameter))
+            {
+                while (reader.Read())
+                {
+                    ImportDetail importDetail = new ImportDetail();
+
+                    importDetail.ImportDetailID = Convert.ToInt32(reader["ImportDetailID"]);
+                    importDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
+                    importDetail.IngredientName = Convert.ToString(reader["Name"]);
+                    importDetail.Quantity = Convert.ToInt32(reader["Quantity"]);
+                    importDetail.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+                    importDetail.ImportID = Convert.ToString(reader["ImportID"]);
+                    importDetail.UnitName = Convert.ToString(reader["UnitName"]);
 
                     listImportDetail.Add(importDetail);
                 }

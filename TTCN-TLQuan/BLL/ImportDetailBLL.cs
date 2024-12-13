@@ -39,5 +39,10 @@ namespace TTCN_TLQuan.BLL
         {
             return _importDetailDAL.GetAll();
         }
+
+        public List<ImportDetail> GetAllByImportID(string ImportID)
+        {
+            return _importDetailDAL.GetAllByImportID(ImportID);
+        }
     }
 }

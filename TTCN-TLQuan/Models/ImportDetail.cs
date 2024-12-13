@@ -12,6 +12,7 @@ namespace TTCN_TLQuan.Models
         public string IngredientName { get; set; }
         public int Quantity { get; set; }
         public float TotalMoney { get; set; }
-        public int ImportID { get; set; }
+        public string ImportID { get; set; }
+        public string UnitName { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace TTCN_TLQuan.UI.administrator.home.pay
         public static List<Order> GetAll()
         {
             OrderBLL orderBLL = new OrderBLL();
-            return orderBLL.GetAll();
+            return orderBLL.GetAllNotPay();
         }
 
         [WebMethod]

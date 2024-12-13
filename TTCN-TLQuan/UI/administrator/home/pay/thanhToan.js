@@ -29,17 +29,18 @@ function renderTable(thanhToan) {
     tableBody.innerHTML = ""; // Xóa nội dung cũ
     currentEmployees.forEach((item, index) => {
         const row = document.createElement('tr');
+        console.log(item);
         row.innerHTML = `
         <td>${item.TableID}</td>
             <td>${item.Date}</td>
             <td>
-                <select id="paymentMethod${item.OrderID}">
+                <select id="paymentMethod_${item.OrderID}">
                     <option value="1">Chuyển khoản ngân hàng</option>
                     <option value="2">Tiền mặt</option>
                 </select>
             </td>
             <td>${item.TotalMoney}</td>
-            <td><input class="button" type="button" onclick="pay(${item.OrderID})" value="Thanh toán" "></td>
+            <td><input class="button" type="button" onclick="pay('${item.OrderID}')" value="Thanh toán" "></td>
        
                 `;
         tableBody.appendChild(row);
@@ -48,7 +49,8 @@ function renderTable(thanhToan) {
 }
 
 function pay(OrderID) {
-    var paymentMethod = document.getElementById("paymentMethod" + OrderID).value;
+    console.log(OrderID);
+    var paymentMethod = document.getElementById(`paymentMethod_${OrderID}`).value;
     $.ajax({
         type: "POST",
         url: "index.aspx/Pay",
@@ -57,8 +59,7 @@ function pay(OrderID) {
         dataType: "json",
         success: function (response) {
             if (response.d === true) {
-                alert("Thanh toán thành công");
-                window.location.href = "../../thanks/"
+                window.location.href = "./bill/?OrderID=" + OrderID;
             }
             else {
                 window.location.href = "./bank-transfer/?OrderID=" + OrderID;

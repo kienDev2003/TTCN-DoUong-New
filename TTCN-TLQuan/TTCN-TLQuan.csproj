@@ -67,6 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UI\administrator\home\import\import-detail\editimport.js" />
+    <Content Include="UI\administrator\home\import\import-detail\index.aspx" />
+    <Content Include="UI\administrator\home\import\import.js" />
+    <Content Include="UI\administrator\home\import\index.aspx" />
+    <Content Include="UI\administrator\home\import\style.css" />
     <Content Include="UI\administrator\home\ingredient\edit.aspx" />
     <Content Include="UI\administrator\home\ingredient\editIngredints.css" />
     <Content Include="UI\administrator\home\ingredient\index.aspx" />
@@ -2160,6 +2165,7 @@
     <Content Include="UI\administrator\home\pay\bank-transfer\assets\img\image.jpg" />
     <Content Include="UI\administrator\home\pay\bank-transfer\index.aspx" />
     <Content Include="UI\administrator\home\pay\bctk.css" />
+    <Content Include="UI\administrator\home\pay\bill\index.aspx" />
     <Content Include="UI\administrator\home\pay\index.aspx" />
     <Content Include="UI\administrator\home\pay\thanhToan.js" />
     <Content Include="UI\administrator\home\product\edit.aspx" />
@@ -2242,6 +2248,20 @@
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\administrator\home\import\import-detail\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\import\import-detail\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\import\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\import\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\administrator\home\ingredient\edit.aspx.cs">
       <DependentUpon>edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2268,6 +2288,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UI\administrator\home\pay\bank-transfer\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\pay\bill\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\pay\bill\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\administrator\home\pay\index.aspx.cs">
@@ -2405,7 +2432,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\administrator\home\import\" />
     <Folder Include="UI\administrator\home\recipe\" />
     <Folder Include="UI\administrator\login\asset\font\" />
     <Folder Include="UI\administrator\login\asset\resset\" />
