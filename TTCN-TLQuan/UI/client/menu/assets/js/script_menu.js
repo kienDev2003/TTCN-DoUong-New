@@ -30,7 +30,7 @@ $(document).on('click', 'div.btnAddItem', function () {
     $.ajax({
         type: "POST",
         url: "index.aspx/CheckRawMaterial",
-        data: JSON.stringify({ productId: buttonId , quantity: 1}),
+        data: JSON.stringify({ productId: buttonId, quantity: 1 }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (respone) {
@@ -45,9 +45,28 @@ $(document).on('click', 'div.btnAddItem', function () {
                 saveOrderDetailsToCookie('OrderDetails', 120, orderDetails);
 
                 document.getElementById("cart_quantity").innerText = orderDetails.length;
+
+                toastr.options = {
+                    "closeButton": false,      // Hiển thị nút đóng
+                    "debug": false,
+                    "newestOnTop": true,      // Hiển thị thông báo mới nhất trên cùng
+                    "progressBar": true,      // Hiển thị thanh tiến độ
+                    "positionClass": "toast-top-right", // Vị trí thông báo ở góc trên bên phải
+                    "preventDuplicates": true, // Ngăn thông báo trùng lặp
+                    "showDuration": "300",    // Thời gian hiển thị thông báo (300ms)
+                    "hideDuration": "1000",   // Thời gian ẩn thông báo
+                    "timeOut": 1500,          // Thời gian thông báo tồn tại (2 giây)
+                    "extendedTimeOut": "1000",// Thời gian thông báo tồn tại thêm khi người dùng hover vào
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",   // Phương thức hiện thị thông báo
+                    "hideMethod": "fadeOut"  // Phương thức ẩn thông báo
+                };
+
+
+                toastr.success(`Sản phẩm "${nameItem}" đã được thêm vào giỏ hàng!`);
             }
-            else
-            {
+            else {
                 Swal.fire({ title: 'Thông báo!', text: 'Không đủ nguyên liệu làm sản phẩm. Quý khách vui lòng chọn sản phẩm khác', icon: 'warning', confirmButtonText: 'OK' });
             }
         },

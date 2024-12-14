@@ -45,7 +45,7 @@ namespace TTCN_TLQuan.UI.administrator.home.pay.bank_transfer
         }
 
         [WebMethod]
-        public static bool CheckPaymentBank(string OrderID,string content_payment, string price)
+        public static object CheckPaymentBank(string OrderID,string content_payment, string price)
         {
             bool status_payment = false;
 
@@ -58,7 +58,13 @@ namespace TTCN_TLQuan.UI.administrator.home.pay.bank_transfer
 
             if (!status_payment) return false;
 
-            return UpdateStatusPay(OrderID, "1");
+            bool exec = UpdateStatusPay(OrderID, "1");
+
+            return new
+            {
+                status = exec,
+                url = $"../bill/?OrderID={OrderID}"
+            };
 
         }
 

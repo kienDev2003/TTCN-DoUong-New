@@ -92,7 +92,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            if (response.d === true) {
+                            if (response.d !== false) {
                                 document.getElementById("bodyContent").innerHTML = ``;
 
                                 Swal.fire(
@@ -101,7 +101,7 @@
                                     'success'
                                 ).then((result) => {
                                     if (result.isConfirmed) {
-                                        window.location.href = '../thanks/';
+                                        window.location.href = response.d.url;
                                     }
                                 });
                             }

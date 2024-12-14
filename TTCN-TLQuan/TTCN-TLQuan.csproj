@@ -77,6 +77,9 @@
     <Content Include="UI\administrator\home\ingredient\index.aspx" />
     <Content Include="UI\administrator\home\ingredient\ingredients.js" />
     <Content Include="UI\administrator\home\ingredient\style.css" />
+    <Content Include="UI\administrator\home\inventory\index.aspx" />
+    <Content Include="UI\administrator\home\inventory\index.js" />
+    <Content Include="UI\administrator\home\inventory\styles.css" />
     <Content Include="UI\administrator\home\master\font\fontawesome-free-6.5.2-web\css\all.css" />
     <Content Include="UI\administrator\home\master\font\fontawesome-free-6.5.2-web\css\all.min.css" />
     <Content Include="UI\administrator\home\master\font\fontawesome-free-6.5.2-web\css\brands.css" />
@@ -2203,6 +2206,7 @@
     <Content Include="UI\client\menu\assets\img\navbar.png" />
     <Content Include="UI\client\menu\assets\js\script_menu.js" />
     <Content Include="UI\client\menu\index.aspx" />
+    <Content Include="UI\client\thanks\index.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -2274,6 +2278,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UI\administrator\home\ingredient\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\inventory\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\inventory\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\administrator\home\master\Layout.Master.cs">
@@ -2365,6 +2376,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UI\client\menu\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\client\thanks\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\client\thanks\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

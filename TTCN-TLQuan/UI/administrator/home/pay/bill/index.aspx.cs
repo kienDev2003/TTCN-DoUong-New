@@ -63,7 +63,6 @@ namespace TTCN_TLQuan.UI.administrator.home.pay.bill
                                 document.body.innerHTML = originalContent;
                               ";
 
-            // Đăng ký và thực thi mã JavaScript
             ClientScript.RegisterStartupScript(this.GetType(), "printPage", script, true);
         }
     }
