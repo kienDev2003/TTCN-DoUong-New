@@ -1,0 +1,183 @@
+/* Định dạng bảng */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  table-layout: auto; /* Tự động điều chỉnh kích thước cột */
+}
+
+thead {
+  background-color: #007BFF;
+  color: white;
+  text-transform: uppercase;
+}
+.header_action{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+th, td {
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+  word-wrap: break-word;
+  white-space: nowrap; /* Giữ nội dung không xuống dòng */
+}
+
+tbody {
+  display: table-row-group; /* Khôi phục kiểu mặc định */
+  
+}
+/* Giao diện các trang */
+#stockTable, 
+#viewStockTable, 
+#endShiftTable {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Các nút */
+button, 
+input[type="button"] {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+button:hover, 
+input[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  text-align: center;
+  display: block;
+  font-size: 2em;
+}
+/* Bộ lọc ngày */
+.date-filter {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.date-filter label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.date-filter input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  max-width: 200px;
+  margin-right: 20px;
+}
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  position: absolute;
+  border-top: 1px solid #ddd;
+  }
+  .pagination a {
+  padding: 8px 16px;
+  margin: 4px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #007bff;
+  }
+  .pagination a:hover {
+  background-color: #ddd;
+  }
+  
+  .pagination .active {
+  background-color: #007bff;
+  color: white;
+  }
+  
+  .pagination .disabled {
+  pointer-events: none;
+  color: #ccc;
+  }
+  .action{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+/* Ô nhập liệu số */
+#endShiftTable input[type="number"] {
+  width: 70px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1rem;
+}
+/* css endshift */
+.combobox-container {
+  position: relative;
+  width: 300px;
+}
+
+.combobox-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.combobox-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+  display: none;
+}
+
+.combobox-options div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.combobox-options div:hover {
+  background-color: #f0f0f0;
+}

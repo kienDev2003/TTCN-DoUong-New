@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="UI\administrator\home\import\import-detail\editimport.js" />
     <Content Include="UI\administrator\home\import\import-detail\index.aspx" />
+    <Content Include="UI\administrator\home\import\import.aspx" />
     <Content Include="UI\administrator\home\import\import.js" />
     <Content Include="UI\administrator\home\import\index.aspx" />
     <Content Include="UI\administrator\home\import\style.css" />
@@ -80,6 +81,8 @@
     <Content Include="UI\administrator\home\inventory\index.aspx" />
     <Content Include="UI\administrator\home\inventory\index.js" />
     <Content Include="UI\administrator\home\inventory\styles.css" />
+    <Content Include="UI\administrator\home\inventory\view.aspx" />
+    <Content Include="UI\administrator\home\inventory\view.js" />
     <Content Include="UI\administrator\home\master\font\fontawesome-free-6.5.2-web\css\all.css" />
     <Content Include="UI\administrator\home\master\font\fontawesome-free-6.5.2-web\css\all.min.css" />
     <Content Include="UI\administrator\home\master\font\fontawesome-free-6.5.2-web\css\brands.css" />
@@ -2176,6 +2179,12 @@
     <Content Include="UI\administrator\home\product\index.aspx" />
     <Content Include="UI\administrator\home\product\product.css" />
     <Content Include="UI\administrator\home\product\product.js" />
+    <Content Include="UI\administrator\home\recipe\index.aspx" />
+    <Content Include="UI\administrator\home\revenue-report\bctk.css" />
+    <Content Include="UI\administrator\home\revenue-report\index.aspx" />
+    <Content Include="UI\administrator\home\revenue-report\order.js" />
+    <Content Include="UI\administrator\home\revenue-report\orderDetail.aspx" />
+    <Content Include="UI\administrator\home\revenue-report\order_detail.js" />
     <Content Include="UI\administrator\home\user\edit.aspx" />
     <Content Include="UI\administrator\home\user\index.aspx" />
     <Content Include="UI\administrator\home\user\user.css" />
@@ -2214,6 +2223,8 @@
     <Compile Include="BLL\ImportBLL.cs" />
     <Compile Include="BLL\ImportDetailBLL.cs" />
     <Compile Include="BLL\IngredientBLL.cs" />
+    <Compile Include="BLL\InventoryBLL.cs" />
+    <Compile Include="BLL\InventoryDetailBLL.cs" />
     <Compile Include="BLL\OrderBLL.cs" />
     <Compile Include="BLL\OrderDetailBLL.cs" />
     <Compile Include="BLL\PaymentMethodBLL.cs" />
@@ -2228,6 +2239,8 @@
     <Compile Include="DAL\ImportDAL.cs" />
     <Compile Include="DAL\ImportDetailDAL.cs" />
     <Compile Include="DAL\IngredientDAL.cs" />
+    <Compile Include="DAL\InventoryDAL.cs" />
+    <Compile Include="DAL\InventoryDetailDAL.cs" />
     <Compile Include="DAL\OrderDAL.cs" />
     <Compile Include="DAL\OrderDetailDAL.cs" />
     <Compile Include="DAL\PaymentMethodDAL.cs" />
@@ -2242,6 +2255,8 @@
     <Compile Include="Models\Import.cs" />
     <Compile Include="Models\ImportDetail.cs" />
     <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\InventoryDetail.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
@@ -2258,6 +2273,13 @@
     </Compile>
     <Compile Include="UI\administrator\home\import\import-detail\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\import\import.aspx.cs">
+      <DependentUpon>import.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\import\import.aspx.designer.cs">
+      <DependentUpon>import.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\administrator\home\import\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -2286,6 +2308,13 @@
     </Compile>
     <Compile Include="UI\administrator\home\inventory\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\inventory\view.aspx.cs">
+      <DependentUpon>view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\inventory\view.aspx.designer.cs">
+      <DependentUpon>view.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\administrator\home\master\Layout.Master.cs">
       <DependentUpon>Layout.Master</DependentUpon>
@@ -2328,6 +2357,27 @@
     </Compile>
     <Compile Include="UI\administrator\home\product\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\recipe\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\recipe\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\revenue-report\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\revenue-report\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\revenue-report\orderDetail.aspx.cs">
+      <DependentUpon>orderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\revenue-report\orderDetail.aspx.designer.cs">
+      <DependentUpon>orderDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\administrator\home\user\edit.aspx.cs">
       <DependentUpon>edit.aspx</DependentUpon>
@@ -2450,7 +2500,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\administrator\home\recipe\" />
     <Folder Include="UI\administrator\login\asset\font\" />
     <Folder Include="UI\administrator\login\asset\resset\" />
   </ItemGroup>

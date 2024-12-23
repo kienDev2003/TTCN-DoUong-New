@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TTCN_TLQuan.BLL;
 using TTCN_TLQuan.Models;
+using TTCN_TLQuan.UI.bar;
 
 namespace TTCN_TLQuan.UI.administrator.home.pay.bill
 {
@@ -22,28 +23,28 @@ namespace TTCN_TLQuan.UI.administrator.home.pay.bill
         private void LoadBill(string OrderID)
         {
             Order order = new Order();
-            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            List<Models.OrderDetail> orderDetails = new List<Models.OrderDetail>();
 
             OrderBLL orderBLL = new OrderBLL();
             OrderDetailBLL orderDetailBLL = new OrderDetailBLL();
+
+            Product product = new Product();
+            ProductBLL productBLL = new ProductBLL();
 
             order = orderBLL.GetByID(OrderID);
             orderDetails = orderDetailBLL.GetAllByOrderID(OrderID);
 
             string html = "";
             int index = 0;
-            foreach (OrderDetail orderDetail in orderDetails)
+            for (int i = 0; i < orderDetails.Count; i++)
             {
-                Product product = new Product();
-                ProductBLL productBLL = new ProductBLL();
-
-                product = productBLL.GetByID(orderDetail.ProductID);
+                product = productBLL.GetByID(orderDetails[i].ProductID);
 
                 string htmlItem = $"<tr>" +
                                     $"<td>{++index}.{product.Name}</td>" +
-                                    $"<td>{orderDetail.Quantity}</td>" +
+                                    $"<td>{orderDetails[i].Quantity}</td>" +
                                     $"<td>{product.Price}</td>" +
-                                    $"<td>{product.Price * orderDetail.Quantity}</td>" +
+                                    $"<td>{product.Price * orderDetails[i].Quantity}</td>" +
                                   $"</tr>";
 
                 html += htmlItem;

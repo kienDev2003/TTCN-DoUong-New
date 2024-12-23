@@ -40,6 +40,7 @@ namespace TTCN_TLQuan.UI.client.cart
             order.StatusPay = false;
 
             listOrderDetail = orderRequest.listOrderDetail;
+            
             ProductBLL productBLL = new ProductBLL();
 
             foreach (OrderDetail orderDetail in listOrderDetail)

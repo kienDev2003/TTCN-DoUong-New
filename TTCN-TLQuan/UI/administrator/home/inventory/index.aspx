@@ -23,10 +23,10 @@
                 </tr>
             </thead>
             <tbody id="stockTable">
-                <!-- Nội dung sẽ được thêm từ JavaScript -->
             </tbody>
         </table>
         <div class="pagination" id="pagination" style="position: absolute;"></div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="index.js"></script>
 </asp:Content>
