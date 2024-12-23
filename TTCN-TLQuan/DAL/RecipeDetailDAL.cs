@@ -62,7 +62,7 @@ namespace TTCN_TLQuan.DAL
                     recipeDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
                     recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
                     recipeDetail.QuantityNeed = Convert.ToInt32(reader["QuantityNeed"]);
-                    recipeDetail.RecipeID = Convert.ToInt32(reader["RecipeID"]);
+                    recipeDetail.RecipeID = Convert.ToString(reader["RecipeID"]);
 
                     listRecipeDetail.Add(recipeDetail);
                 }
@@ -70,7 +70,7 @@ namespace TTCN_TLQuan.DAL
             return listRecipeDetail;
         }
 
-        public List<RecipeDetail> GetAllByRecipeID(int RecipeID)
+        public List<RecipeDetail> GetAllByRecipeID(string RecipeID)
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
@@ -87,7 +87,7 @@ namespace TTCN_TLQuan.DAL
                     recipeDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
                     //recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
                     recipeDetail.QuantityNeed = Convert.ToInt32(reader["QuantityNeed"]);
-                    recipeDetail.RecipeID = Convert.ToInt32(reader["RecipeID"]);
+                    recipeDetail.RecipeID = Convert.ToString(reader["RecipeID"]);
 
                     listRecipeDetail.Add(recipeDetail);
                 }

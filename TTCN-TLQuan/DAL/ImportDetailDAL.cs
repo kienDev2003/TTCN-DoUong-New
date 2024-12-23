@@ -22,7 +22,6 @@ namespace TTCN_TLQuan.DAL
             {
                 {"@IngredientID", importDetail.IngredientID },
                 {"@Quantity", importDetail.Quantity },
-                {"@TotalMoney", importDetail.TotalMoney },
                 {"@ImportID", importDetail.ImportID }
             };
             return _dB.ExecuteNonQuery("ImportDetail_Insert", parameter);

@@ -21,6 +21,7 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
+                {"@ImportID", import.ImportID},
                 {"@Date", import.Date },
                 {"@UserID", import.UserID },
                 {"@TotalMoney", import.TotalMoney }

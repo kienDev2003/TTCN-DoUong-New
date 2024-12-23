@@ -47,6 +47,7 @@
                         <li id="liUser" runat="server"><a href="../user"><i class="fa-solid fa-users"></i><span>Tài khoản</span></a></li>
                         <li id="liProduct" runat="server"><a href="../product"><i class="fa-brands fa-product-hunt"></i><span>Sản Phẩm</span></a></li>
                         <li id="liIngredient" runat="server"><a href="../ingredient"><i class="fa-solid fa-box"></i><span>Nguyên Liệu</span></a></li>
+                        <li id="liRecipe" runat="server"><a href="../recipe"><i class="fa-solid fa-box"></i><span>Công thức</span></a></li>
                         <li id="liImport" runat="server"><a href="../import"><i class="fa-solid fa-truck-fast"></i><span>Nhập Hàng</span></a></li>
                         <li id="liInventory" runat="server"><a href="../inventory"><i class="fa-solid fa-clipboard-list"></i><span>Tồn kho</span></a></li>
                         <li><a href="../../login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>

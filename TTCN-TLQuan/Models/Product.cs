@@ -15,5 +15,6 @@ namespace TTCN_TLQuan.Models
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
+        public bool StatusNotExistRecipe {  get; set; }
     }
 }

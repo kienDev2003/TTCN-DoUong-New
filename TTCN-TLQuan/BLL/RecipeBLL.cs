@@ -18,9 +18,9 @@ namespace TTCN_TLQuan.BLL
             _recipeDAL = new RecipeDAL();
         }
 
-        public bool Add(int ProductID)
+        public bool Add(Recipe recipe)
         {
-            if (_recipeDAL.Add(ProductID) > 0) return true;
+            if (_recipeDAL.Add(recipe) > 0) return true;
             return false;
         }
 
@@ -30,9 +30,9 @@ namespace TTCN_TLQuan.BLL
             return false;
         }
 
-        public bool Delete(int RecipeID)
+        public bool DeleteByProductID(int ProductID)
         {
-            if (_recipeDAL.Delete(RecipeID) > 0) return true;
+            if (_recipeDAL.DeleteByProductID(ProductID) > 0) return true;
             return false;
         }
 

@@ -26,7 +26,8 @@ namespace TTCN_TLQuan.DAL
                 {"@StatusSell", product.StatusSell },
                 {"@Price", product.Price},
                 {"@CategoryID", product.CategoryID },
-                {"@ImageUrl", product.ImageUrl }
+                {"@ImageUrl", product.ImageUrl },
+                {"@StatusNotExistRecipe", false }
             };
             return _dB.ExecuteNonQuery("Product_Insert", parameter);
         }
@@ -72,6 +73,31 @@ namespace TTCN_TLQuan.DAL
                     product.CategoryID = Convert.ToInt32(reader["CategoryID"]);
                     product.CategoryName = Convert.ToString(reader["CategoryName"]);
                     product.ImageUrl = Convert.ToString(reader["ImageUrl"]);
+
+                    listProduct.Add(product);
+                }
+            }
+            return listProduct;
+        }
+
+        public List<Product> GetAllByNotExistRecipe()
+        {
+            List<Product> listProduct = new List<Product>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Product_Select_Not_Recipe", null))
+            {
+                while (reader.Read())
+                {
+                    Product product = new Product();
+
+                    product.ProductID = Convert.ToInt32(reader["ProductID"]);
+                    product.Name = Convert.ToString(reader["Name"]);
+                    product.Describe = Convert.ToString(reader["Describe"]);
+                    product.StatusSell = Convert.ToBoolean(reader["StatusSell"]);
+                    product.Price = Convert.ToSingle(reader["Price"]);
+                    product.CategoryID = Convert.ToInt32(reader["CategoryID"]);
+                    product.CategoryName = Convert.ToString(reader["CategoryName"]);
+                    product.ImageUrl = Convert.ToString(reader["ImageUrl"]);
+                    product.StatusNotExistRecipe = Convert.ToBoolean(reader["StatusExistRecipe"]);
 
                     listProduct.Add(product);
                 }

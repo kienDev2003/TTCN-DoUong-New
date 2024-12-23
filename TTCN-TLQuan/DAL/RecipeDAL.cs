@@ -16,11 +16,12 @@ namespace TTCN_TLQuan.DAL
             _dB = new DatabaseConnection();
         }
 
-        public int Add(int ProductID)
+        public int Add(Recipe recipe)
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@ProductID", ProductID}
+                {"@ProductID", recipe.ProductID},
+                {"@RecipeID", recipe.RecipeID}
             };
             return _dB.ExecuteNonQuery("Recipe_Insert", parameter);
         }
@@ -35,13 +36,13 @@ namespace TTCN_TLQuan.DAL
             return _dB.ExecuteNonQuery("Recipe_Update", parameter);
         }
 
-        public int Delete(int RecipeID)
+        public int DeleteByProductID(int ProductID)
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@RecipeID",RecipeID }
+                {"@ProductID",ProductID }
             };
-            return _dB.ExecuteNonQuery("Recipe_Delete", parameter);
+            return _dB.ExecuteNonQuery("Recipe_Delete_By_ProductID", parameter);
         }
 
         public List<Recipe> GetAll()
@@ -53,7 +54,7 @@ namespace TTCN_TLQuan.DAL
                 {
                     Recipe recipe = new Recipe();
 
-                    recipe.RecipeID = Convert.ToInt32(reader["RecipeID"]);
+                    recipe.RecipeID = Convert.ToString(reader["RecipeID"]);
                     recipe.ProductID = Convert.ToInt32(reader["ProductID"]);
                     recipe.ProductName = Convert.ToString(reader["Name"]);
 
@@ -76,7 +77,7 @@ namespace TTCN_TLQuan.DAL
             {
                 if (dataReader.Read())
                 {
-                    recipe.RecipeID = int.Parse(dataReader["RecipeID"].ToString());
+                    recipe.RecipeID = Convert.ToString(dataReader["RecipeID"].ToString());
                     recipe.ProductID = int.Parse(dataReader["ProductID"].ToString());
                     recipe.ProductName = dataReader["Name"].ToString();
                 }

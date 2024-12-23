@@ -11,6 +11,6 @@ namespace TTCN_TLQuan.Models
         public int IngredientID {  get; set; }
         public string IngredientName { get; set; }
         public int QuantityNeed { get; set; }
-        public int RecipeID { get; set; }
+        public string RecipeID { get; set; }
     }
 }

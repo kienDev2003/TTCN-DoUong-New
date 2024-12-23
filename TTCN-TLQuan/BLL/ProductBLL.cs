@@ -41,6 +41,11 @@ namespace TTCN_TLQuan.BLL
             return _productDAL.GetAll();
         }
 
+        public List<Product> GetAllByNotExistRecipe()
+        {
+            return _productDAL.GetAllByNotExistRecipe();
+        }
+
         public List<Product> GetByName(string Name)
         {
             return _productDAL.GetByName(Name);
@@ -63,7 +68,7 @@ namespace TTCN_TLQuan.BLL
 
             Recipe recipe = recipeBLL.getByProductId(ProductID);
 
-            if (recipe.RecipeID <= 0) return false;
+            if (recipe.RecipeID == null) return false;
 
             List<RecipeDetail> listRecipeDetail = new List<RecipeDetail>();
             RecipeDetailBLL recipeDetailBLL = new RecipeDetailBLL();

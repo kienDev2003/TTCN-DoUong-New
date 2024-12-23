@@ -42,7 +42,7 @@ $(document).on('click', 'div.btnAddItem', function () {
                     quantity: 1,
                 });
 
-                saveOrderDetailsToCookie('OrderDetails', 120, orderDetails);
+                saveOrderDetailsToCookie('OrderDetails', 360, orderDetails);
 
                 document.getElementById("cart_quantity").innerText = orderDetails.length;
 

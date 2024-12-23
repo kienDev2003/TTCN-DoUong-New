@@ -2179,7 +2179,10 @@
     <Content Include="UI\administrator\home\product\index.aspx" />
     <Content Include="UI\administrator\home\product\product.css" />
     <Content Include="UI\administrator\home\product\product.js" />
+    <Content Include="UI\administrator\home\recipe\edit.aspx" />
     <Content Include="UI\administrator\home\recipe\index.aspx" />
+    <Content Include="UI\administrator\home\recipe\product.css" />
+    <Content Include="UI\administrator\home\recipe\recipe.js" />
     <Content Include="UI\administrator\home\revenue-report\bctk.css" />
     <Content Include="UI\administrator\home\revenue-report\index.aspx" />
     <Content Include="UI\administrator\home\revenue-report\order.js" />
@@ -2357,6 +2360,13 @@
     </Compile>
     <Compile Include="UI\administrator\home\product\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\recipe\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\recipe\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\administrator\home\recipe\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

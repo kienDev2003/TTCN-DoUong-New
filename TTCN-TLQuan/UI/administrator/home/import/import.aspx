@@ -104,43 +104,41 @@
 </head>
 
 <body style="display: flex; flex-direction: row;">
-    <div class="product_list" id="ingredient_content" runat="server" style="width: fit-content;">
-        <div class="product" style="display: flex; flex-direction: row; width: fit-content;">
+    <div style="width: 30%;" id="listingredient" runat="server">
+        <div class="product" style="display: flex; flex-direction: row;">
             <div>
                 <h2>Trà</h2>
-                <p>Giá: 100,000 VND</p>
+                <p>100</p>
             </div>
-            <input type="button" class="add-to-cart" onclick="" value="+">
+
+            <button onclick="AddIngredient(1,2,'Alo',1,'gam')">+</button>
         </div>
 
-        <div class="product" style="display: flex; flex-direction: row; width: fit-content;">
+        <div class="product" style="display: flex; flex-direction: row;">
             <div>
                 <h2>Chanh</h2>
                 <p>Giá: 200,000 VND</p>
             </div>
-            <input type="button" class="add-to-cart" data-dvi="quả" data-name="Chanh" data-price="100000" value="+">
-        </div>
-        <div class="product" style="display: flex; flex-direction: row; width: fit-content;">
-            <div>
-                <h2>Đường</h2>
-                <p>Giá: 200,000 VND</p>
-            </div>
-            <input type="button" class="add-to-cart" data-dvi="gram" data-name="Đường" data-price="200000" value="+">
+
+            <button onclick="AddIngredient(2,3,'Loa',2,'kilogram')">+</button>
         </div>
     </div>
     <section class="cart-container">
         <h2>Giỏ Hàng</h2>
         <ul id="cart"></ul>
         <p id="total">Tổng: 0 VND</p>
-        <input type="button" value="Nhập hàng">
+        <input type="button" onclick="ImportClick()" value="Nhập hàng">
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
         // Giỏ hàng
         let cart = [];
         let total = 0;
 
         // Cập nhật giao diện giỏ hàng
         function updateCart() {
+
             const cartList = document.getElementById('cart');
             const totalDisplay = document.getElementById('total');
 
@@ -153,13 +151,13 @@
                 li.className = 'cart-item';
 
                 li.innerHTML = `
-                                  <span>${item.name}</span>
-                                  <span>${item.dvi}</span>
-                                  <span>${item.price.toLocaleString()} VND</span>
-                                  <input type="number" min="1" value="${item.quantity}" class="quantity-input" data-id="${item.id}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+/, '');">
+              <span>${item.Name}</span>
+              <span>${item.UnitName}</span>
+              <span>${item.Price.toLocaleString()} VND</span>
+              <input type="number" min="1" value="${item.Quantity}" class="quantity-input" onchange="updateQuantity(${item.IngredientID}, this.value)" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+/, '');">
 
-                                  <button class="remove-item" data-name="${item.name}">Xóa</button>
-                                `;
+              <button class="remove-item" onclick="removeFromCart(${item.IngredientID})">Xóa</button>
+            `;
 
                 cartList.appendChild(li);
             });
@@ -167,54 +165,37 @@
             // Cập nhật tổng
             totalDisplay.textContent = `Tổng: ${total.toLocaleString()} VND`;
 
-            // Thêm sự kiện "Xóa" cho từng nút
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', () => {
-                    const name = button.dataset.name;
-                    removeFromCart(name);
-                });
-            });
-
-            // Thêm sự kiện "Thay đổi số lượng" cho ô nhập
-            document.querySelectorAll('.quantity-input').forEach(input => {
-                input.addEventListener('input', (event) => {
-                    const name = event.target.dataset.name;
-                    const newQuantity = parseInt(event.target.value, 10) || 0; // Lấy giá trị hoặc mặc định là 0
-                    updateQuantity(name, newQuantity);
-                });
-            });
-
         }
 
         // Thêm sản phẩm vào giỏ hàng
-        function addToCart(id, price, dvi) {
+        function AddIngredient(IngredientID, Price, Name, UnitID, UnitName) {
             // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-            const existingItem = cart.find(item => item.name === name);
+            const existingItem = cart.find(item => item.IngredientID === IngredientID);
 
             if (existingItem) {
                 // Nếu đã có, tăng số lượng
-                existingItem.quantity += 1;
+                existingItem.Quantity += 1;
             } else {
                 // Nếu chưa có, thêm sản phẩm mới
-                cart.push({ name, price, dvi, quantity: 1 }); // Lưu giá trị dvi
+                cart.push({ IngredientID, UnitID, Name, Price, UnitID, UnitName, Quantity: 1 }); // Lưu giá trị dvi
             }
 
             // Cập nhật tổng tiền
-            total += price;
+            total += Price;
 
             // Cập nhật giao diện
             updateCart();
         }
 
         // Xóa sản phẩm khỏi giỏ hàng
-        function removeFromCart(name) {
-            const itemIndex = cart.findIndex(item => item.name === name);
+        function removeFromCart(IngredientID) {
+            const itemIndex = cart.findIndex(item => item.IngredientID === IngredientID);
 
             if (itemIndex !== -1) {
                 const item = cart[itemIndex];
 
                 // Cập nhật tổng tiền
-                total -= item.price * item.quantity;
+                total -= item.Price * item.Quantity;
 
                 // Xóa sản phẩm khỏi giỏ hàng
                 cart.splice(itemIndex, 1);
@@ -225,8 +206,8 @@
         }
 
         // Cập nhật số lượng sản phẩm
-        function updateQuantity(name, newQuantity) {
-            const item = cart.find(item => item.name === name);
+        function updateQuantity(IngredientID, newQuantity) {
+            const item = cart.find(item => item.IngredientID === IngredientID);
 
             if (item) {
                 // Kiểm tra nếu giá trị nhập không hợp lệ hoặc nhỏ hơn 1
@@ -237,32 +218,35 @@
                 }
 
                 // Tính toán sự chênh lệch trong số lượng
-                const difference = newQuantity - item.quantity;
+                const difference = Number(newQuantity) - item.Quantity;
 
                 // Cập nhật tổng tiền
-                total += item.price * difference;
+                total += item.Price * difference;
 
                 // Cập nhật số lượng
-                item.quantity = newQuantity;
+                item.Quantity = Number(newQuantity);
 
                 // Cập nhật giao diện
                 updateCart();
             }
         }
 
-        // Gắn sự kiện cho nút "Thêm vào giỏ hàng"
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', () => {
-                const id = button.dataset.id;
-                const price = parseInt(button.dataset.price, 10);
-                const dvi = button.dataset.dvi; // Lấy giá trị dvi
-
-                addToCart(id, price, dvi); // Gọi hàm addToCart với cả dvi
-                console.log(cart);
+        function ImportClick() {
+            $.ajax({
+                type: "POST",
+                url: "import.aspx/Add",
+                data: JSON.stringify({ ImportDetails: cart, TotalMoney: total }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d === true) { window.location.href = "./"; }
+                    else { alert("co loi xay ra") }
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
             });
-        });
-
-        
+        }
     </script>
 </body>
 
