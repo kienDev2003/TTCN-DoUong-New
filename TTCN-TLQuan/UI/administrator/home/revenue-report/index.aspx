@@ -47,9 +47,10 @@
             return `${year}-${month}-${day}`;
         }
 
-        const today = new Date();
+        var today = new Date();
         const yesterday = new Date();
-        yesterday.setDate(today.getDate() - 6);
+        yesterday.setDate(today.getDate() - 7);
+        today.setDate(today.getDate() + 1);
 
         document.getElementById('fromDate').value = formatDate(yesterday);
         document.getElementById('toDate').value = formatDate(today);

@@ -187,10 +187,9 @@ function end() {
             icon: 'warning'
         });
         return;
-
-        window.location.href = 'ketca.aspx';
     }
-}k
+    window.location.href = 'ketca.aspx';
+}
 
 
 
