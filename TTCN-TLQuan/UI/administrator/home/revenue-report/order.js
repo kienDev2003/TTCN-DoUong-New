@@ -14,7 +14,7 @@ function load() {
             var orders = response.d;
             var totalMoney = 0;
             for (var i = 0; i < orders.length; i++) totalMoney += orders[i].TotalMoney;
-            document.getElementById("txtTotalMoneyDoanhThu").innerText = totalMoney;
+            document.getElementById("txtTotalMoneyDoanhThu").innerText = 'Tổng doanh thu: '+ totalMoney;
             renderTable(orders, PageIndex); // Chuyển PageIndex vào đây
         },
         error: function (xhr, status, error) {

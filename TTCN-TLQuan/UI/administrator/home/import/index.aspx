@@ -7,7 +7,7 @@
     <div class="container_child">
         <h2 class="title_child">Nguyên liệu</h2>
         <div class="header_child">
-            <a href="import.aspx">Thêm Nguyên liệu</a>
+            <a href="import.aspx">Nhập Nguyên liệu</a>
         </div>
         <div class="tb_load">
             <table>

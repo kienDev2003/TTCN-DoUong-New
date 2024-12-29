@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UI\administrator\home\import\import-detail\editimport.js" />
     <Content Include="UI\administrator\home\import\import-detail\index.aspx" />
     <Content Include="UI\administrator\home\import\import.aspx" />
     <Content Include="UI\administrator\home\import\import.js" />
@@ -2224,6 +2223,7 @@
     <Content Include="UI\client\menu\assets\js\script_menu.js" />
     <Content Include="UI\client\menu\index.aspx" />
     <Content Include="UI\client\thanks\index.aspx" />
+    <Content Include="UI\ImageProduct\tra-chanh.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

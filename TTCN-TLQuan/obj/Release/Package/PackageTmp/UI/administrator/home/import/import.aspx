@@ -1,19 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="import.aspx.cs" Inherits="TTCN_TLQuan.UI.administrator.home.import.import" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UI/administrator/home/master/Layout.Master" AutoEventWireup="true" CodeBehind="import.aspx.cs" Inherits="TTCN_TLQuan.UI.administrator.home.import.import" %>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ Hàng</title>
-    <link rel="stylesheet" href="styles.css">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
         .product {
             border: 1px solid #ddd;
             padding: 10px;
@@ -36,41 +24,6 @@
                 background-color: #45a049;
             }
 
-        #cart {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            border: 1px solid black;
-            border-radius: 10px;
-            height: 50px;
-            width: 100%;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            padding-right: 0;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            gap: 10px;
-        }
-
-            .cart-item span {
-                flex: 2;
-                text-align: left;
-            }
-
-            .cart-item input {
-                flex: 1;
-                max-width: 50px;
-                text-align: center;
-            }
-
         #total {
             text-align: end;
             margin-right: 10px;
@@ -78,9 +31,15 @@
             margin-top: 20px;
         }
 
-        .cart-container {
-            padding-left: 20px;
-            width: 100%;
+        input[type="number"] {
+            height: 25px;
+            border-radius: 10px;
+        }
+
+        .cart-item input {
+            flex: 1;
+            max-width: 50px;
+            text-align: center;
         }
 
         input[type="button"] {
@@ -96,44 +55,87 @@
             float: right;
         }
 
+        .cart-container {
+            max-height: 490px; /* Điều chỉnh chiều cao tối đa */
+            overflow-y: auto;
+        }
+
         input[type="number"] {
             height: 25px;
             border-radius: 10px;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+            table th,
+            table td {
+                border: 1px solid #ddd;
+                text-align: center;
+                padding: 10px;
+            }
+
+            table th {
+                background-color: #657a71;
+                color: white;
+                font-weight: bold;
+            }
+
+            table tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+        .product h2 {
+            font-size: 40px;
+        }
+
+        .product p {
+            font-size: 25px;
+        }
     </style>
-</head>
-
-<body style="display: flex; flex-direction: row;">
-    <div style="width: 30%;" id="listingredient" runat="server">
-        <div class="product" style="display: flex; flex-direction: row;">
-            <div>
-                <h2>Trà</h2>
-                <p>100</p>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <div class="container_child" style="display: flex; justify-content: space-between;">
+        <div class="cart-container" id="listingredient" runat="server" style="width: 30%;">
+            <div class="product" style="display: flex; flex-direction: row; margin-top: 10px;">
+                <div>
+                    <h2>Táo</h2>
+                    <p>200</p>
+                </div>
+                <input type="button" onclick="AddIngredient(1,200,'Táo',2,'g')" value="+">
             </div>
-
-            <button onclick="AddIngredient(1,2,'Alo',1,'gam')">+</button>
+            <div class="product" style="display: flex; flex-direction: row;">
+                <div>
+                    <h2>Nước Trà</h2>
+                    <p>100</p>
+                </div>
+                <input type="button" onclick="AddIngredient(2,100,'Nước Trà',4,'ml')" value="+">
+            </div>
         </div>
+        <div class="cart-container" style="width: 69%;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên nguyên liệu</th>
+                        <th>Số lượng</th>
+                        <th>Đơn vị tính</th>
+                        <th>Đơn giá</th>
+                        <th>Chức Năng</th>
 
-        <div class="product" style="display: flex; flex-direction: row;">
-            <div>
-                <h2>Chanh</h2>
-                <p>Giá: 200,000 VND</p>
+                    </tr>
+                </thead>
+                <tbody id="cart">
+                </tbody>
+            </table>
+            <div class="total">
+                <p id="total">Tổng: 0 VND</p>
+                <input type="button" onclick="ImportClick()" value="Nhập hàng">
             </div>
-
-            <button onclick="AddIngredient(2,3,'Loa',2,'kilogram')">+</button>
         </div>
     </div>
-    <section class="cart-container">
-        <h2>Giỏ Hàng</h2>
-        <ul id="cart">
-            <li><span>Tên nguyên liệu</span>
-                <span>Đơn vị tính</span>
-                <span>Đơn giá</span>
-            </li>
-        </ul>
-        <p id="total">Tổng: 0 VND</p>
-        <input type="button" onclick="ImportClick()" value="Nhập hàng">
-    </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
@@ -152,18 +154,21 @@
 
             // Hiển thị từng sản phẩm trong giỏ hàng
             cart.forEach(item => {
-                const li = document.createElement('li');
+                const li = document.createElement('tr');
                 li.className = 'cart-item';
 
                 li.innerHTML = `
-              <span>${item.Name}</span>
-              <span>${item.UnitName}</span>
-              <span>${item.Price.toLocaleString()} VND</span>
-              <input type="number" min="1" value="${item.Quantity}" class="quantity-input" onchange="updateQuantity(${item.IngredientID}, this.value)" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+/, '');">
-
-              <button class="remove-item" onclick="removeFromCart(${item.IngredientID})">Xóa</button>
+              <td>${item.Name}</td>
+              <td>
+                <input type="number" min="1" value="${item.Quantity}" class="quantity-input" onchange="updateQuantity(${item.IngredientID}, this.value)" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+/, '');">
+                </td>
+              <td>${item.UnitName}</td>
+              <td>${item.Price.toLocaleString()} VND</td>
+                <td>
+                    <input type="button" class="remove-item" onclick="removeFromCart(${item.IngredientID})" value="Xóa">
+                </td>
+             
             `;
-
                 cartList.appendChild(li);
             });
 
@@ -253,6 +258,4 @@
             });
         }
     </script>
-</body>
-
-</html>
+</asp:Content>

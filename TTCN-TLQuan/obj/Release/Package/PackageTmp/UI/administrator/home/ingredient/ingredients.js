@@ -1,4 +1,4 @@
-const PageSize = 9;
+const PageSize = 7;
 let PageIndex = 1;
 function btnSearch() {
     var txtSearch = document.getElementById("txtSearch").value;

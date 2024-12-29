@@ -27,14 +27,13 @@ namespace TTCN_TLQuan.UI.administrator.home.import
 
             ingredients = ingredientBLL.GetAll();
 
-            foreach(Ingredient ingredient in ingredients)
+            foreach (Ingredient ingredient in ingredients)
             {
                 string temp = $"<div class=\"product\" style=\"display: flex; flex-direction: row;\">" +
                                 $"<div>" +
-                                    $"<h2>{ingredient.Name}</h2>" +
-                                    $"<p>{ingredient.Price}</p>" +
+                                    $"<h2>{ingredient.Name}</h2>"+
                                 $"</div>" +
-                                $"<button onclick=\"AddIngredient({ingredient.IngredientID},{ingredient.Price},'{ingredient.Name}',{ingredient.UnitID},'{ingredient.UnitName}')\">+</button>" +
+                                $"<input type=\"button\" onclick=\"AddIngredient({ingredient.IngredientID},{ingredient.Price},'{ingredient.Name}',{ingredient.UnitID},'{ingredient.UnitName}')\" value=\"+\">" +
                               $"</div>";
 
                 html += temp;
@@ -56,12 +55,12 @@ namespace TTCN_TLQuan.UI.administrator.home.import
             import.TotalMoney = TotalMoney;
             import.UserID = userLogin.UserID;
 
-            foreach(ImportDetail importDetail in ImportDetails)
+            foreach (ImportDetail importDetail in ImportDetails)
             {
                 importDetail.ImportID = import.ImportID;
             }
 
-            return AddImport(import,ImportDetails);
+            return AddImport(import, ImportDetails);
         }
 
         private static bool AddImport(Import import, List<ImportDetail> importDetails)
@@ -71,7 +70,7 @@ namespace TTCN_TLQuan.UI.administrator.home.import
 
             if (importBLL.Add(import))
             {
-                foreach(ImportDetail importDetail in importDetails)
+                foreach (ImportDetail importDetail in importDetails)
                 {
                     importDetailBLL.Add(importDetail);
                 }
