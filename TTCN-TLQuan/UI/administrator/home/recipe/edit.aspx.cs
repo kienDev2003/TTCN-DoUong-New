@@ -39,11 +39,8 @@ namespace TTCN_TLQuan.UI.administrator.home.recipe
         {
             RecipeDetailBLL recipeDetailBLL = new RecipeDetailBLL();
 
-            if(recipeDetails.Count == 0)
-            {
-                if (recipeDetailBLL.Delete(ProductID)) return true;
-                return false;
-            }
+            if (!recipeDetailBLL.Delete(ProductID)) return false;
+            
             foreach (RecipeDetail item in recipeDetails)
             {
                 if (recipeDetailBLL.Add(item)) continue;
