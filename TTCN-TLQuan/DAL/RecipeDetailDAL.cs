@@ -23,7 +23,7 @@ namespace TTCN_TLQuan.DAL
             {
                 {"@IngredientID", recipeDetail.IngredientID },
                 {"@QuantityNeed", recipeDetail.QuantityNeed},
-                {"@RecipeID", recipeDetail.RecipeID }
+                {"@ProductID", recipeDetail.ProductID }
             };
             return _dB.ExecuteNonQuery("RecipeDetail_Insert", parameter);
         }
@@ -35,7 +35,7 @@ namespace TTCN_TLQuan.DAL
                 {"@RecipeDetailID" , recipeDetail.RecipeDetailID},
                 {"@IngredientID", recipeDetail.IngredientID },
                 {"@QuantityNeed", recipeDetail.QuantityNeed},
-                {"@RecipeID", recipeDetail.RecipeID }
+                {"@ProductID", recipeDetail.ProductID }
             };
             return _dB.ExecuteNonQuery("RecipeDetail_Update", parameter);
         }
@@ -44,7 +44,7 @@ namespace TTCN_TLQuan.DAL
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@RecipeDetailID",RecipeDetailID }
+                {"@ProductID",RecipeDetailID }
             };
             return _dB.ExecuteNonQuery("RecipeDetail_Delete", parameter);
         }
@@ -60,9 +60,9 @@ namespace TTCN_TLQuan.DAL
 
                     recipeDetail.RecipeDetailID = Convert.ToInt32(reader["RecipeDetailID"]);
                     recipeDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
-                    recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
+                    recipeDetail.Name = Convert.ToString(reader["IngredientName"]);
                     recipeDetail.QuantityNeed = Convert.ToInt32(reader["QuantityNeed"]);
-                    recipeDetail.RecipeID = Convert.ToString(reader["RecipeID"]);
+                    recipeDetail.ProductID = Convert.ToInt32(reader["ProductID"]);
 
                     listRecipeDetail.Add(recipeDetail);
                 }
@@ -70,14 +70,14 @@ namespace TTCN_TLQuan.DAL
             return listRecipeDetail;
         }
 
-        public List<RecipeDetail> GetAllByRecipeID(string RecipeID)
+        public List<RecipeDetail> GetAllByRecipeID(int ProductID)
         {
             Dictionary<string, object> parameter = new Dictionary<string, object>()
             {
-                {"@RecipeID",RecipeID }
+                {"@ProductID",ProductID }
             };
             List<RecipeDetail> listRecipeDetail = new List<RecipeDetail>();
-            using (SqlDataReader reader = _dB.ExecuteReader("RecipeDetail_Select_By_RecipeID",parameter))
+            using (SqlDataReader reader = _dB.ExecuteReader("RecipeDetail_Select_By_ProductID",parameter))
             {
                 while (reader.Read())
                 {
@@ -85,9 +85,10 @@ namespace TTCN_TLQuan.DAL
 
                     recipeDetail.RecipeDetailID = Convert.ToInt32(reader["RecipeDetailID"]);
                     recipeDetail.IngredientID = Convert.ToInt32(reader["IngredientID"]);
-                    //recipeDetail.IngredientName = Convert.ToString(reader["IngredientName"]);
+                    recipeDetail.Name = Convert.ToString(reader["Name"]);
                     recipeDetail.QuantityNeed = Convert.ToInt32(reader["QuantityNeed"]);
-                    recipeDetail.RecipeID = Convert.ToString(reader["RecipeID"]);
+                    recipeDetail.UnitName = Convert.ToString(reader["UnitName"]);
+                    recipeDetail.ProductID = Convert.ToInt32(reader["ProductID"]);
 
                     listRecipeDetail.Add(recipeDetail);
                 }

@@ -20,12 +20,7 @@ function btnDelete(productID) {
                 dataType: "json",
                 success: function (response) {
                     if (response.d === true) {
-                        //var txtSearch = document.getElementById("txtSearch").value;
-                        //if (txtSearch !== '' && txtSearch !== null) {
-                        //    btnSearch();
-                        //} else {
-                            load();  // Để lại PageIndex là 1 khi xóa và tải lại
-                        //}
+                        load();
                     }
                 },
                 error: function (xhr, status, error) {
@@ -36,7 +31,6 @@ function btnDelete(productID) {
     });
 }
 function load() {
-
     $.ajax({
         type: "POST",
         url: "index.aspx/GetAllNotStatusExistRecipe",

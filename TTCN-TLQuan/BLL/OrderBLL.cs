@@ -40,6 +40,11 @@ namespace TTCN_TLQuan.BLL
             return _orderDAL.GetAll();
         }
 
+        public List<Order> GetAllFilterDate(string formDate, string todDate)
+        {
+            return _orderDAL.GetAllFilterDate(formDate,todDate);
+        }
+
         public Order GetByID(string OrderID)
         {
             return _orderDAL.GetByID(OrderID);

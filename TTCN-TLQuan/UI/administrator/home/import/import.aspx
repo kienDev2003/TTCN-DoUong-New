@@ -125,7 +125,12 @@
     </div>
     <section class="cart-container">
         <h2>Giỏ Hàng</h2>
-        <ul id="cart"></ul>
+        <ul id="cart">
+            <li><span>Tên nguyên liệu</span>
+                <span>Đơn vị tính</span>
+                <span>Đơn giá</span>
+            </li>
+        </ul>
         <p id="total">Tổng: 0 VND</p>
         <input type="button" onclick="ImportClick()" value="Nhập hàng">
     </section>

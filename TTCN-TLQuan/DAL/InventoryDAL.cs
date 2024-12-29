@@ -48,7 +48,7 @@ namespace TTCN_TLQuan.DAL
                     Inventory inventory = new Inventory();
 
                     inventory.InventoryID = Convert.ToString(reader["InventoryID"]);
-                    inventory.UserName = Convert.ToString(reader["UserName"]);
+                    inventory.UserName = Convert.ToString(reader["FullName"]);
                     inventory.Date = Convert.ToString(reader["Date"]);
                     inventory.UserID = Convert.ToInt32(reader["UserID"]);
 

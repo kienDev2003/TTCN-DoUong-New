@@ -89,6 +89,7 @@ function renderTable(products) {
                             <td>
                                 <a href="edit.aspx?productID=${product.ProductID}">Sửa</a>
                                 <input type="button" onclick="btnDelete(${product.ProductID})" class="btn" value="Xóa">
+                                <a href="./view-recipe?ProductID=${product.ProductID}">Xem công thức</a>
                             </td>
                         `;
         tableBody.appendChild(row);

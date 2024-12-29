@@ -78,8 +78,10 @@
     <Content Include="UI\administrator\home\ingredient\index.aspx" />
     <Content Include="UI\administrator\home\ingredient\ingredients.js" />
     <Content Include="UI\administrator\home\ingredient\style.css" />
+    <Content Include="UI\administrator\home\inventory\endshift.js" />
     <Content Include="UI\administrator\home\inventory\index.aspx" />
     <Content Include="UI\administrator\home\inventory\index.js" />
+    <Content Include="UI\administrator\home\inventory\ketca.aspx" />
     <Content Include="UI\administrator\home\inventory\styles.css" />
     <Content Include="UI\administrator\home\inventory\view.aspx" />
     <Content Include="UI\administrator\home\inventory\view.js" />
@@ -2179,7 +2181,10 @@
     <Content Include="UI\administrator\home\product\index.aspx" />
     <Content Include="UI\administrator\home\product\product.css" />
     <Content Include="UI\administrator\home\product\product.js" />
+    <Content Include="UI\administrator\home\product\view-recipe\view-recipe.js" />
+    <Content Include="UI\administrator\home\product\view-recipe\index.aspx" />
     <Content Include="UI\administrator\home\recipe\edit.aspx" />
+    <Content Include="UI\administrator\home\recipe\editRecipe.js" />
     <Content Include="UI\administrator\home\recipe\index.aspx" />
     <Content Include="UI\administrator\home\recipe\product.css" />
     <Content Include="UI\administrator\home\recipe\recipe.js" />
@@ -2312,6 +2317,13 @@
     <Compile Include="UI\administrator\home\inventory\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UI\administrator\home\inventory\ketca.aspx.cs">
+      <DependentUpon>ketca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\inventory\ketca.aspx.designer.cs">
+      <DependentUpon>ketca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\administrator\home\inventory\view.aspx.cs">
       <DependentUpon>view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2359,6 +2371,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UI\administrator\home\product\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\administrator\home\product\view-recipe\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\administrator\home\product\view-recipe\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\administrator\home\recipe\edit.aspx.cs">

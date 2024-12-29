@@ -14,14 +14,19 @@ namespace TTCN_TLQuan.UI.administrator.home.revenue_report
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         [WebMethod]
-        public static List<Order> GetAll()
+        public static List<Order> GetAll(string formDate, string toDate)
         {
+            List<Order> list = new List<Order>();
             OrderBLL orderBLL = new OrderBLL();
-            return orderBLL.GetAll();
+            foreach(var order in orderBLL.GetAllFilterDate(formDate,toDate))
+            {
+                if(order.StatusPay == true) list.Add(order);
+            }
+            return list;
         }
     }
 }

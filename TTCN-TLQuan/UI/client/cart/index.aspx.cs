@@ -147,9 +147,7 @@ namespace TTCN_TLQuan.UI.client.cart
                 Recipe recipe = new Recipe();
                 List<RecipeDetail> recipeDetails = new List<RecipeDetail>();
 
-                recipe = recipeBLL.getByProductId(orderDetail.ProductID);
-
-                recipeDetails = recipeDetailBLL.GetAllByRecipeID(recipe.RecipeID);
+                recipeDetails = recipeDetailBLL.GetAllByRecipeID(orderDetail.ProductID);
 
                 foreach (RecipeDetail recipeDetail in recipeDetails)
                 {

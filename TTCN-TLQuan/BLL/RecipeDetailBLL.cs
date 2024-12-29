@@ -40,9 +40,9 @@ namespace TTCN_TLQuan.BLL
             return _recipeDetailBLL.GetAll();
         }
 
-        public List<RecipeDetail> GetAllByRecipeID(string RecipeID)
+        public List<RecipeDetail> GetAllByRecipeID(int ProductID)
         {
-            return _recipeDetailBLL.GetAllByRecipeID(RecipeID);
+            return _recipeDetailBLL.GetAllByRecipeID(ProductID);
         }
     }
 }

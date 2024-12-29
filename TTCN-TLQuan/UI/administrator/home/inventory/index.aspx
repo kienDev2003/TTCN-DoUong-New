@@ -7,12 +7,7 @@
     <div id="page-stock">
         <h1>Quản Lý Tồn Kho</h1>
         <div class="action">
-            <input type="button" id="endShiftButton" onclick="end()" value="Kết thúc ca"></input>
-        </div>
-        <div class="date-filter">
-            <label for="datePicker">Xem tồn kho ngày:</label>
-            <input type="date" id="datePicker" />
-            <input type="button" id="btntimkiem" onclick="btntimkiem()" value="Tìm Kiếm" />
+            <input type="button" id="endShiftButton" onclick="end()" value="Kết thúc ca">
         </div>
         <table>
             <thead>

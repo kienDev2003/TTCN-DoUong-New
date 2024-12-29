@@ -19,36 +19,10 @@ body {
     z-index: 9;
     border-top: 1px solid #ddd;
 }
-
-
-
-@media screen and (max-width: 1376px){
-
-    .date{
-        display: flex;
-        flex-direction: column;
-        
-
-    }
-   .chucNang{
-    bottom: 0;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    span{
-        text-align: center;
-    }
-    select{
-        display: flex;
-        margin: 0 auto;
-    }
-   }
-}
-
 .date{
     display: flex;
     flex-direction: row;
-    width: 5%;
+    width: 20%;
 }
 
 
@@ -169,3 +143,24 @@ h1{
     padding-top: 50px;
 }
 
+.action{
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    margin-bottom: 5px;
+}
+.exit{
+    background-color: #007bff;
+    border-radius: 5px;
+    width: 90px;
+    height: 35px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 17px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}

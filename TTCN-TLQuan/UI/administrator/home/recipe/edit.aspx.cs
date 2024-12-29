@@ -12,69 +12,43 @@ namespace TTCN_TLQuan.UI.administrator.home.recipe
 {
     public partial class edit : System.Web.UI.Page
     {
+        private static int ProductID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["ProductID"] == null) Response.Redirect("../../login");
-            LoadIngredient();
+            ProductID = Convert.ToInt32(Request.QueryString["ProductID"]);
+            ProductBLL productBLL = new ProductBLL();
+            User_FullName.InnerText = productBLL.GetByID(ProductID).Name;
         }
-
-        private void LoadIngredient()
+        [WebMethod]
+        public static List<Ingredient> GetIngredients()
         {
-            string html = "";
-
             IngredientBLL ingredientBLL = new IngredientBLL();
-            List<Ingredient> ingredients = new List<Ingredient>();
-
-            ingredients = ingredientBLL.GetAll();
-
-            foreach (Ingredient ingredient in ingredients)
-            {
-                string temp = $"<div class=\"product\" style=\"display: flex; flex-direction: row;\">" +
-                                $"<div>" +
-                                    $"<h2>{ingredient.Name}</h2>" +
-                                    $"<p>{ingredient.Quantity}</p>" +
-                                $"</div>" +
-                                $"<button onclick=\"AddIngredient({ingredient.IngredientID},'{ingredient.Name}','{ingredient.UnitName}')\">+</button>" +
-                              $"</div>";
-
-                html += temp;
-            }
-
-            LiteralControl literalControl = new LiteralControl(html);
-            listingredient.Controls.Clear();
-            listingredient.Controls.Add(literalControl);
+            return ingredientBLL.GetAll();
         }
 
         [WebMethod]
-        public static bool Add(int ProductID, List<RecipeDetail> recipeDetails)
+        public static List<RecipeDetail> GetRecipeDetails(int ProductID)
         {
-            Recipe recipe = new Recipe();
-
-            recipe.RecipeID = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            recipe.ProductID = ProductID;
-            
-            foreach(RecipeDetail recipeDetail in recipeDetails)
-            {
-                recipeDetail.RecipeID = recipe.RecipeID;
-            }
-
-            return AddRecipe(recipe,recipeDetails);
-        }
-
-        private static bool AddRecipe(Recipe recipe, List<RecipeDetail> recipeDetails)
-        {
-            RecipeBLL recipeBLL = new RecipeBLL();
             RecipeDetailBLL recipeDetailBLL = new RecipeDetailBLL();
 
-            if (recipeBLL.Add(recipe))
-            {
-                foreach (RecipeDetail recipeDetail in recipeDetails)
-                {
-                    recipeDetailBLL.Add(recipeDetail);
-                }
-            }
-            else return false;
+            return recipeDetailBLL.GetAllByRecipeID(ProductID);
+        }
 
+        [WebMethod]
+        public static bool Add(List<RecipeDetail> recipeDetails)
+        {
+            RecipeDetailBLL recipeDetailBLL = new RecipeDetailBLL();
+
+            if(recipeDetails.Count == 0)
+            {
+                if (recipeDetailBLL.Delete(ProductID)) return true;
+                return false;
+            }
+            foreach (RecipeDetail item in recipeDetails)
+            {
+                if (recipeDetailBLL.Add(item)) continue;
+                else return false;
+            }
             return true;
         }
     }

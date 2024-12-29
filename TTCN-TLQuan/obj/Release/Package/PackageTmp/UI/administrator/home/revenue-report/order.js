@@ -1,95 +1,111 @@
 
-const orders = [
-    { table: '1', date: '05/12/2003', totalMoney: '200000', paymentMethod: 'Chuyển khoản' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
-    { table: '2', date: '05/12/2003', totalMoney: '300000', paymentMethod: 'Tiền mặt' },
+function load() {
+    var orders = [];
+    var formDate = document.getElementById('fromDate').value;
+    var toDate = document.getElementById('toDate').value;
 
-];
-const itemsPerPage = 10; // Số mục mỗi trang
-let currentPage = 1;
+    $.ajax({
+        type: "POST",
+        url: "index.aspx/GetAll",
+        data: JSON.stringify({ formDate: formDate, toDate: toDate }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            var orders = response.d;
+            var totalMoney = 0;
+            for (var i = 0; i < orders.length; i++) totalMoney += orders[i].TotalMoney;
+            document.getElementById("txtTotalMoneyDoanhThu").innerText = totalMoney;
+            renderTable(orders, PageIndex); // Chuyển PageIndex vào đây
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+    renderTable(orders, PageIndex)
+}
+const PageSize = 9;
+let PageIndex = 1;
 
-function displayTable(page) {
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const currentOrders = orders.slice(start, end);
 
-    const tableBody = document.querySelector('#table_container tbody');
+function renderTable(orders) {
+    const start = (PageIndex - 1) * PageSize;
+    const end = start + PageSize;
+    const currentEmployees = orders.slice(start, end); // Lấy dữ liệu trang hiện tại
+
+    const tableBody = document.getElementById('table_container');
     tableBody.innerHTML = ""; // Xóa nội dung cũ
-
-    currentOrders.forEach(order => {
+    currentEmployees.forEach(order => {
         const row = document.createElement('tr');
         row.innerHTML = `
-                    <td>${order.table}</td>
-                    <td>${order.date}</td>
-                    <td>${order.paymentMethod}</td>
-                    <td>${order.table}</td>
-                    <td>${order.totalMoney}</td>
-                    <td><a class="button" style="text-decoration: none; color:#fff;" href="order_detail.html">Xem chi tiết</a></td>
-
+        <td>${order.TableID}</td>
+                    <td>${order.Date}</td>
+                    <td>${order.PaymentMethodName}</td>
+                    <td>${order.TotalMoney}</td>
+                    <td><a class="button" style="text-decoration: none; color:#fff;" href="orderDetail.aspx?OrderID=${order.OrderID}">Xem chi tiết</a></td>
+       
                 `;
         tableBody.appendChild(row);
     });
+    setupPagination(orders, PageIndex);
 }
 
-function setupPagination() {
-    const totalPages = Math.ceil(orders.length / itemsPerPage);
+function setupPagination(orders) {
+    const totalPages = Math.ceil(orders.length / PageSize);
     const paginationDiv = document.getElementById('pagination');
     paginationDiv.innerHTML = ""; // Xóa nội dung cũ
 
+    // Tạo nút "Trước"
     const prevPage = document.createElement('a');
     prevPage.href = "#";
     prevPage.textContent = "Trước";
-    if (currentPage === 1) {
+    if (PageIndex === 1) {
         prevPage.classList.add('disabled');
     }
     prevPage.addEventListener('click', function (event) {
         event.preventDefault();
-        if (currentPage > 1) {
-            currentPage--;
-            displayTable(currentPage);
-            setupPagination();
+        if (PageIndex > 1) {
+            PageIndex--;
+            // var txtSearch = document.getElementById("txtSearch").value;
+            // if (txtSearch != '' || txtSearch != null) {
+            //     btnSearch();
+            // }
+            // else {
+            load(PageIndex);
+            // }
         }
     });
     paginationDiv.appendChild(prevPage);
 
-    const totalPagesToShow = 2; // Hiển thị tối đa 5 trang
-    let startPage = currentPage - Math.floor(totalPagesToShow / 2);
-    let endPage = currentPage + Math.floor(totalPagesToShow / 2);
+    // Tạo các liên kết trang số
+    const totalPagesToShow = 5; // Hiển thị tối đa 5 trang
+    let startPage = PageIndex - Math.floor(totalPagesToShow / 2);
+    let endPage = PageIndex + Math.floor(totalPagesToShow / 2);
 
-    if (startPage <= 0) {
+    if (startPage < 1) {
         startPage = 1;
         endPage = totalPagesToShow;
     }
-
     if (endPage > totalPages) {
         endPage = totalPages;
         startPage = totalPages - totalPagesToShow + 1;
     }
-
+    if (startPage < 1) {
+        startPage = 1;
+    }
     if (startPage > 1) {
         const firstPage = document.createElement('a');
         firstPage.href = "#";
         firstPage.textContent = "1";
         firstPage.addEventListener('click', function (event) {
             event.preventDefault();
-            currentPage = 1;
-            displayTable(currentPage);
-            setupPagination();
+            PageIndex = 1;
+            var txtSearch = document.getElementById("txtSearch").value;
+            if (txtSearch != '' || txtSearch != null) {
+                btnSearch();
+            }
+            else {
+                load(PageIndex);
+            }
         });
         paginationDiv.appendChild(firstPage);
 
@@ -100,15 +116,20 @@ function setupPagination() {
         const pageLink = document.createElement('a');
         pageLink.href = "#";
         pageLink.textContent = i;
-        if (i === currentPage) {
+        if (i === PageIndex) {
             pageLink.classList.add('active');
         }
 
         pageLink.addEventListener('click', function (event) {
             event.preventDefault();
-            currentPage = i;
-            displayTable(currentPage);
-            setupPagination();
+            PageIndex = i;
+            // // var txtSearch = document.getElementById("txtSearch").value;
+            // if (txtSearch != '' || txtSearch != null) {
+            //     btnSearch();
+            // }
+            // else {
+            load(PageIndex);
+            // }
         });
 
         paginationDiv.appendChild(pageLink);
@@ -122,30 +143,38 @@ function setupPagination() {
         lastPage.textContent = totalPages;
         lastPage.addEventListener('click', function (event) {
             event.preventDefault();
-            currentPage = totalPages;
-            displayTable(currentPage);
-            setupPagination();
+            PageIndex = totalPages;
+            // var txtSearch = document.getElementById("txtSearch").value;
+            // if (txtSearch != '' || txtSearch != null) {
+            //     btnSearch();
+            // }
+            // else {
+            load(PageIndex);
+            // }
         });
         paginationDiv.appendChild(lastPage);
     }
 
+    // Tạo nút "Tiếp"
     const nextPage = document.createElement('a');
     nextPage.href = "#";
     nextPage.textContent = "Tiếp";
-    if (currentPage === totalPages) {
+    if (PageIndex === totalPages) {
         nextPage.classList.add('disabled');
     }
     nextPage.addEventListener('click', function (event) {
         event.preventDefault();
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayTable(currentPage);
-            setupPagination();
+        if (PageIndex < totalPages) {
+            PageIndex++;
+            // var txtSearch = document.getElementById("txtSearch").value;
+            // if (txtSearch != '' || txtSearch != null) {
+            //     btnSearch();
+            // }
+            // else {
+            load(PageIndex);
+            // }
         }
     });
     paginationDiv.appendChild(nextPage);
 }
-
-// Hiển thị bảng và phân trang ban đầu
-displayTable(currentPage);
-setupPagination();
+load();

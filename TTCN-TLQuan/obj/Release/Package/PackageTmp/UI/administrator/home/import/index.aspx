@@ -7,11 +7,7 @@
     <div class="container_child">
         <h2 class="title_child">Nguyên liệu</h2>
         <div class="header_child">
-            <div class="search_child">
-                <input type="date" id="">
-                <input type="button" id="btnSearch()" placeholder="Nhận tên sản phẩm" value="Tìm Kiếm ">
-            </div>
-            <a href="edit.html">Thêm Nguyên liệu</a>
+            <a href="import.aspx">Thêm Nguyên liệu</a>
         </div>
         <div class="tb_load">
             <table>

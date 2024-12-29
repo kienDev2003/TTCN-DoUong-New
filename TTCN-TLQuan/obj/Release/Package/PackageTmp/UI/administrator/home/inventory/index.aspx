@@ -7,12 +7,7 @@
     <div id="page-stock">
         <h1>Quản Lý Tồn Kho</h1>
         <div class="action">
-            <input type="button" id="endShiftButton" onclick="end()" value="Kết thúc ca"></input>
-        </div>
-        <div class="date-filter">
-            <label for="datePicker">Xem tồn kho ngày:</label>
-            <input type="date" id="datePicker" />
-            <input type="button" id="btntimkiem" onclick="btntimkiem()" value="Tìm Kiếm" />
+            <input type="button" id="endShiftButton" onclick="end()" value="Kết thúc ca">
         </div>
         <table>
             <thead>
@@ -23,10 +18,10 @@
                 </tr>
             </thead>
             <tbody id="stockTable">
-                <!-- Nội dung sẽ được thêm từ JavaScript -->
             </tbody>
         </table>
         <div class="pagination" id="pagination" style="position: absolute;"></div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="index.js"></script>
 </asp:Content>

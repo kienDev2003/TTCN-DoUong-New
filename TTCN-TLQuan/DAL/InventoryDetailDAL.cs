@@ -24,7 +24,7 @@ namespace TTCN_TLQuan.DAL
                 {"@InventoryID", inventoryDetail.InventoryID },
                 {"@IngredientID", inventoryDetail.IngredientID },
                 {"@ActualQuantity",inventoryDetail.ActualQuantity },
-                {"@NumberOfStock", inventoryDetail.NumberOfSystem }
+                {"@NumberOfSystem", inventoryDetail.NumberOfSystem }
             };
             return _dB.ExecuteNonQuery("InventoryDetail_Insert", parameter);
         }
@@ -37,7 +37,7 @@ namespace TTCN_TLQuan.DAL
                 {"@InventoryID", inventoryDetail.InventoryID },
                 {"@IngredientID", inventoryDetail.IngredientID },
                 {"@ActualQuantity",inventoryDetail.ActualQuantity },
-                {"@NumberOfStock", inventoryDetail.NumberOfSystem }
+                {"@NumberOfSystem", inventoryDetail.NumberOfSystem }
             };
             return _dB.ExecuteNonQuery("InventoryDetail_Update", parameter);
         }

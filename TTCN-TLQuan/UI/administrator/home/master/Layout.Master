@@ -42,15 +42,15 @@
                 <!-- Sidebar -->
                 <div class="sidebar expanded">
                     <ul>
-                        <li id="liReport" runat="server"><a href="../revenue-report"><i class="fa-solid fa-chart-pie"></i><span>Thống kê doanh thu</span></a></li>
-                        <li id="liPay" runat="server"><a href="../pay"><i class="fa-solid fa-chart-pie"></i><span>Thanh Toán</span></a></li>
-                        <li id="liUser" runat="server"><a href="../user"><i class="fa-solid fa-users"></i><span>Tài khoản</span></a></li>
-                        <li id="liProduct" runat="server"><a href="../product"><i class="fa-brands fa-product-hunt"></i><span>Sản Phẩm</span></a></li>
-                        <li id="liIngredient" runat="server"><a href="../ingredient"><i class="fa-solid fa-box"></i><span>Nguyên Liệu</span></a></li>
-                        <li id="liRecipe" runat="server"><a href="../recipe"><i class="fa-solid fa-box"></i><span>Công thức</span></a></li>
-                        <li id="liImport" runat="server"><a href="../import"><i class="fa-solid fa-truck-fast"></i><span>Nhập Hàng</span></a></li>
-                        <li id="liInventory" runat="server"><a href="../inventory"><i class="fa-solid fa-clipboard-list"></i><span>Tồn kho</span></a></li>
-                        <li><a href="../../login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+                        <li id="liReport" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/revenue-report") %>"><i class="fa-solid fa-chart-pie"></i><span>Thống kê doanh thu</span></a></li>
+                        <li id="liPay" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/pay") %>"><i class="fa-solid fa-chart-pie"></i><span>Thanh Toán</span></a></li>
+                        <li id="liUser" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/user") %>"><i class="fa-solid fa-users"></i><span>Tài khoản</span></a></li>
+                        <li id="liProduct" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/product") %>"><i class="fa-brands fa-product-hunt"></i><span>Sản Phẩm</span></a></li>
+                        <li id="liIngredient" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/ingredient") %>"><i class="fa-solid fa-box"></i><span>Nguyên Liệu</span></a></li>
+                        <li id="liRecipe" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/recipe") %>"><i class="fa-solid fa-box"></i><span>Công thức</span></a></li>
+                        <li id="liImport" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/import") %>"><i class="fa-solid fa-truck-fast"></i><span>Nhập Hàng</span></a></li>
+                        <li id="liInventory" runat="server"><a href="<%= ResolveUrl("~/UI/administrator/home/inventory") %>"><i class="fa-solid fa-clipboard-list"></i><span>Tồn kho</span></a></li>
+                        <li><a href="<%= ResolveUrl("~/UI/administrator/login") %>"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
                     </ul>
                 </div>
                 <!-- Content -->
@@ -66,6 +66,6 @@
             </div>
         </div>
     </form>
-    <script src="../master/master.js"></script>
+    <script src="~/UI/master/master.js"></script>
 </body>
 </html>

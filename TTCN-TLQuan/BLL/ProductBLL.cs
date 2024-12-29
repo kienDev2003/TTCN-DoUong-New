@@ -64,16 +64,13 @@ namespace TTCN_TLQuan.BLL
         public bool RawMaterial(int ProductID, int Quantity)
         {
             IngredientBLL ingredientBLL = new IngredientBLL();
-            RecipeBLL recipeBLL = new RecipeBLL();
-
-            Recipe recipe = recipeBLL.getByProductId(ProductID);
-
-            if (recipe.RecipeID == null) return false;
 
             List<RecipeDetail> listRecipeDetail = new List<RecipeDetail>();
             RecipeDetailBLL recipeDetailBLL = new RecipeDetailBLL();
 
-            listRecipeDetail = recipeDetailBLL.GetAllByRecipeID(recipe.RecipeID);
+            listRecipeDetail = recipeDetailBLL.GetAllByRecipeID(ProductID);
+
+            if (listRecipeDetail.Count == 0) return false;
 
             foreach(RecipeDetail recipeDetail in listRecipeDetail)
             {

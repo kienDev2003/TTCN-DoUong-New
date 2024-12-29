@@ -79,6 +79,35 @@ namespace TTCN_TLQuan.DAL
             return listOrder;
         }
 
+        public List<Order> GetAllFilterDate(string formDate, string toDate)
+        {
+            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            {
+                {"@formDate",formDate },
+                {"@toDate", toDate }
+            };
+            List<Order> listOrder = new List<Order>();
+            using (SqlDataReader reader = _dB.ExecuteReader("Order_Select", parameter))
+            {
+                while (reader.Read())
+                {
+                    Order order = new Order();
+
+                    order.OrderID = Convert.ToString(reader["OrderID"]);
+                    order.TableID = Convert.ToInt32(reader["TableID"]);
+                    order.Date = Convert.ToString(reader["Date"]);
+                    order.TotalMoney = Convert.ToSingle(reader["TotalMoney"]);
+                    order.StatusServe = Convert.ToBoolean(reader["StatusServe"]);
+                    order.StatusPay = Convert.ToBoolean(reader["StatusPay"]);
+                    order.PaymentMethodID = Convert.ToInt32(reader["PaymentMethodID"]);
+                    order.PaymentMethodName = Convert.ToString(reader["PaymentMethodName"]);
+
+                    listOrder.Add(order);
+                }
+            }
+            return listOrder;
+        }
+
         public Order GetByID(string OrderID)
         {
             Order order = new Order();

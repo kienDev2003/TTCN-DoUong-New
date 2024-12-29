@@ -27,7 +27,6 @@ namespace TTCN_TLQuan.DAL
                 {"@Price", product.Price},
                 {"@CategoryID", product.CategoryID },
                 {"@ImageUrl", product.ImageUrl },
-                {"@StatusNotExistRecipe", false }
             };
             return _dB.ExecuteNonQuery("Product_Insert", parameter);
         }

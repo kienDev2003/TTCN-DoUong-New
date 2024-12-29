@@ -28,9 +28,9 @@ namespace TTCN_TLQuan.UI.administrator.home.recipe
         [WebMethod]
         public static bool DeleteRecipeByProductID(int ProductID)
         {
-            RecipeBLL recipeBLL = new RecipeBLL();
+            RecipeDetailBLL recipeDetailBLL = new RecipeDetailBLL();
 
-            return recipeBLL.DeleteByProductID(ProductID);
+            return recipeDetailBLL.Delete(ProductID);
         }
     }
 }

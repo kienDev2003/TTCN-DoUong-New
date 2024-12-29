@@ -1,26 +1,4 @@
-function btntimkiem() {
-    var date = document.getElementById('datePicker').value
-    console.log(date)
-    var now = new Date();
 
-    // Lấy các phần ngày, tháng, năm, giờ, phút, giây
-    var day = String(now.getDate()).padStart(2, '0'); // Ngày (DD)
-    var month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng (MM), getMonth() trả về từ 0-11
-    var year = now.getFullYear(); // Năm (YYYY)
-
-    var hours = String(now.getHours()).padStart(2, '0'); // Giờ (HH)
-    var minutes = String(now.getMinutes()).padStart(2, '0'); // Phút (MM)
-    var seconds = String(now.getSeconds()).padStart(2, '0'); // Giây (SS)
-
-    // Định dạng ngày giờ thành DD-MM-YYYY HH:MM:SS
-    var formattedDateTime = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
-
-    // Hiển thị kết quả
-    console.log("Ngày giờ hiện tại:", formattedDateTime);
-    alert("Ngày giờ hiện tại: " + formattedDateTime);
-}
-
-// sua
 function load() {
     const stockData = [];
 
@@ -197,9 +175,22 @@ function setupPagination(stockData) {
 }
 load();
 function end() {
-    endShiftButton = document.getElementById('endShiftButton')
-    window.location.href = 'endshift.html'
-}
+    var endShiftButton = document.getElementById('endShiftButton');
+
+    var currentTime = new Date();
+    var currentHour = currentTime.getHours();
+
+    if (currentHour < 22 || currentHour >= 23) {
+        Swal.fire({
+            title: 'Thông báo!',
+            text: 'Chưa đến giờ kết ca (22:00 - 23:00)',
+            icon: 'warning'
+        });
+        return;
+
+        window.location.href = 'ketca.aspx';
+    }
+}k
 
 
 

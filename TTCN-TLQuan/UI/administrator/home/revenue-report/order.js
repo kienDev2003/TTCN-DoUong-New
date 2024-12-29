@@ -1,14 +1,20 @@
 
 function load() {
     var orders = [];
+    var formDate = document.getElementById('fromDate').value;
+    var toDate = document.getElementById('toDate').value;
+
     $.ajax({
         type: "POST",
         url: "index.aspx/GetAll",
-        data: JSON.stringify({}),
+        data: JSON.stringify({ formDate: formDate, toDate: toDate }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
             var orders = response.d;
+            var totalMoney = 0;
+            for (var i = 0; i < orders.length; i++) totalMoney += orders[i].TotalMoney;
+            document.getElementById("txtTotalMoneyDoanhThu").innerText = totalMoney;
             renderTable(orders, PageIndex); // Chuyển PageIndex vào đây
         },
         error: function (xhr, status, error) {

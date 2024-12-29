@@ -4,36 +4,55 @@
     <link rel="stylesheet" href="./bctk.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <h1>Thống kê doanh thu</h1>
+    <div class="body_child">
+        <h1>Thống kê doanh thu</h1>
+        <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px 0px; align-items: center;">
+            <div class="date">
+                <div>
+                    <span>Từ ngày</span><input type="date" name="" id="fromDate">
+                </div>
+                <div>
+                    <span>Đến ngày</span><input type="date" name="" id="toDate">
+                </div>
+            </div>
+            <div class="chucNang">
+                <span id="txtTotalMoneyDoanhThu" style="font-weight: bold"></span>
+                <input type="button" onclick="load()" value="Lọc">
+            </div>
 
-    <div style="display: flex; justify-content: space-between; width: 100%; margin: 0 auto;">
-        <div class="date">
-            <div>
-                <span>Từ ngày</span><input style="margin-right: 100px;" type="date" name="" id="">
-            </div>
-            <div>
-                <span>Đến ngày</span><input type="date" name="" id="">
-            </div>
         </div>
-        <div class="chucNang">
-            <input type="button" value="Lọc">
-        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Bàn</th>
+                    <th>Thời gian </th>
+                    <th>Kiểu thanh toán</th>
+                    <th>Tổng tiền</th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody id="table_container">
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination" style="position: absolute;"></div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Hàm để định dạng ngày thành yyyy-mm-dd (định dạng HTML5)
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Thêm 0 nếu < 10
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
 
-    <table id="table_container">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Thời gian </th>
-                <th>Kiểu thanh toán</th>
-                <th>Bàn</th>
-                <th>Tổng tiền</th>
-                <th>Chức năng</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div class="pagination" id="pagination"></div>
+        const today = new Date();
+        const yesterday = new Date();
+        yesterday.setDate(today.getDate() - 6);
+
+        document.getElementById('fromDate').value = formatDate(yesterday);
+        document.getElementById('toDate').value = formatDate(today);
+    </script>
     <script src="./order.js"></script>
 </asp:Content>
