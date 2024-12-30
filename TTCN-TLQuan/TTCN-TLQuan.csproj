@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UI\administrator\home\import\import-detail\editimport.js" />
     <Content Include="UI\administrator\home\import\import-detail\index.aspx" />
     <Content Include="UI\administrator\home\import\import.aspx" />
     <Content Include="UI\administrator\home\import\import.js" />

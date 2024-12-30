@@ -5,7 +5,7 @@
         .product {
             border: 1px solid #ddd;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-top: 10px;
         }
 
         button {
@@ -89,11 +89,11 @@
             }
 
         .product h2 {
-            font-size: 40px;
+            font-size: 20px;
         }
 
         .product p {
-            font-size: 25px;
+            font-size: 15px;
         }
     </style>
 </asp:Content>

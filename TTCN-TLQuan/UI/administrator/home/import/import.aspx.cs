@@ -31,7 +31,8 @@ namespace TTCN_TLQuan.UI.administrator.home.import
             {
                 string temp = $"<div class=\"product\" style=\"display: flex; flex-direction: row;\">" +
                                 $"<div>" +
-                                    $"<h2>{ingredient.Name}</h2>"+
+                                    $"<h2> <spam>Tên</spam>  {ingredient.Name}</h2>"+
+                                    $"<p> <spam>Giá</spam> {ingredient.Price}</p>" +
                                 $"</div>" +
                                 $"<input type=\"button\" onclick=\"AddIngredient({ingredient.IngredientID},{ingredient.Price},'{ingredient.Name}',{ingredient.UnitID},'{ingredient.UnitName}')\" value=\"+\">" +
                               $"</div>";
