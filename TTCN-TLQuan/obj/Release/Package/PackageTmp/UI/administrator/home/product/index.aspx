@@ -23,7 +23,7 @@
                         <th>Hình Ảnh</th>
                         <th>Loại Sản Phẩm</th>
                         <th>Trạng Thái</th>
-                        <th>Chức Năng</th>
+                        <th style="width:20%">Chức Năng</th>
                     </tr>
                 </thead>
                 <tbody id="product_load">
