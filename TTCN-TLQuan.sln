@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTCN-TLQuan", "TTCN-TLQuan\TTCN-TLQuan.csproj", "{A4D1F6AA-F938-4804-B5D1-3185AA2348C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateQR", "CreateQR\CreateQR.csproj", "{A774011E-E8D7-4C7C-8317-18039984885D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A4D1F6AA-F938-4804-B5D1-3185AA2348C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4D1F6AA-F938-4804-B5D1-3185AA2348C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4D1F6AA-F938-4804-B5D1-3185AA2348C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A774011E-E8D7-4C7C-8317-18039984885D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A774011E-E8D7-4C7C-8317-18039984885D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A774011E-E8D7-4C7C-8317-18039984885D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A774011E-E8D7-4C7C-8317-18039984885D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
