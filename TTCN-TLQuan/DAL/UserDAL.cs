@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Web;
+using QLBH_TTCN_DoUong;
 using TTCN_TLQuan.Models;
 
 namespace TTCN_TLQuan.DAL
@@ -157,16 +158,6 @@ namespace TTCN_TLQuan.DAL
                 }
             }
             return user;
-        }
-
-        public int ChangPassword(User user)
-        {
-            Dictionary<string, object> parameter = new Dictionary<string, object>()
-            {
-                {"@UserID", user.UserID },
-                {"@Password", user.Password }
-            };
-            return _dB.ExecuteNonQuery("User_ChangPassword", parameter);
         }
     }
 }

@@ -53,19 +53,10 @@ namespace TTCN_TLQuan.BLL
             return _userDAL.GetByID(UserID);
         }
 
-        public bool ChangePassword(int UserID, string newPassword)
-        {
-            User user = GetByID(UserID);
-            user.Password = Common.MD5_Hash(newPassword+user.UserName);
-
-            if(_userDAL.ChangPassword(user) > 0) return true;
-            else return false;
-        }
-
-        public User Login(string UserName,string Password)
+        public User Login(string UserName, string Password)
         {
             Password = Common.MD5_Hash(Password + UserName);
-            return _userDAL.Login(UserName,Password);
+            return _userDAL.Login(UserName, Password);
         }
     }
 }

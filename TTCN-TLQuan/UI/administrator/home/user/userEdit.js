@@ -7,6 +7,7 @@ if (userID) {
     document.getElementById('btnCRUD').value = "Cập nhật";
 
     document.getElementById('txtPassword').style.display = "none";
+    document.getElementById('txtUserName').readOnly = true;
 
     getUser(userID);
 }
